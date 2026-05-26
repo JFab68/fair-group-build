@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advocacy Toolkit - FAIR Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/dist/style.css">
+  <style>
+    .badge-educational { display:inline-block; padding:0.125rem 0.5rem; border-radius:9999px; font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; background-color:#dbeafe; color:#1e3a8a; }
+    .badge-government { display:inline-block; padding:0.125rem 0.5rem; border-radius:9999px; font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; background-color:#d1fae5; color:#065f46; }
+    .badge-research { display:inline-block; padding:0.125rem 0.5rem; border-radius:9999px; font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; background-color:#e9d5ff; color:#6b21a8; }
+    .badge-advocacy { display:inline-block; padding:0.125rem 0.5rem; border-radius:9999px; font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; background-color:#ffedd5; color:#9a3412; }
+    .badge-model { display:inline-block; padding:0.125rem 0.5rem; border-radius:9999px; font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; background-color:#fce7f3; color:#9d174d; }
+    .no-scrollbar::-webkit-scrollbar { display:none; }
+    .no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
+    .scroll-mt-32 { scroll-margin-top:8rem; }
+  </style>
+</head>
+<body class="font-body text-dark-gray bg-white" data-page="advocacy">
+
+  <!-- Navigation -->
+  <nav class="bg-navy shadow-lg" role="navigation" aria-label="Main navigation">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center space-x-4">
+          <a href="/dashboard.html" class="text-white font-heading text-xl font-bold" aria-label="FAIR Group dashboard home">FAIR Group</a>
+          <span class="text-blue-300 hidden sm:block" aria-hidden="true">/</span>
+          <a href="/dashboard.html" class="text-blue-200 hover:text-white text-sm font-medium transition-colors hidden sm:block">Dashboard</a>
+        </div>
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="/dashboard.html" class="nav-link">Dashboard</a>
+          <a href="/profile.html" class="nav-link">Profile</a>
+          <a href="/resources.html" class="nav-link">Research Library</a>
+          <a href="/advocacy-toolkit.html" class="nav-link font-medium" aria-current="page">Advocacy Toolkit</a>
+          <a href="/admin.html" id="admin-link" class="nav-link hidden">Admin</a>
+          <button
+            id="logout-btn"
+            class="btn-secondary text-sm px-4 py-2"
+            aria-label="Sign out of your account"
+          >
+            Sign Out
+          </button>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button
+            id="mobile-menu-btn"
+            class="text-white focus:outline-none focus:ring-2 focus:ring-white rounded p-1"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-navy border-t border-blue-900">
+      <div class="px-4 py-4 space-y-3">
+        <a href="/dashboard.html" class="block nav-link py-1">Dashboard</a>
+        <a href="/profile.html" class="block nav-link py-1">Profile</a>
+        <a href="/resources.html" class="block nav-link py-1">Research Library</a>
+        <a href="/advocacy-toolkit.html" class="block nav-link py-1">Advocacy Toolkit</a>
+        <a href="/admin.html" class="block nav-link py-1 hidden" id="admin-link-mobile">Admin</a>
+        <button id="logout-btn-mobile" class="block w-full text-left nav-link py-1">Sign Out</button>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Hero Section -->
+  <section class="bg-navy text-white py-20 px-4 ">
+    <div class="max-w-5xl mx-auto text-center">
+      <h1 class="font-heading text-4xl md:text-5xl font-bold mb-6 leading-tight">
+        Advocacy Toolkit
+      </h1>
+      <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-6 font-light leading-relaxed">
+        Everything you need to navigate the Arizona Legislature, write effective legislation, advocate persuasively to lawmakers, and move bills from idea to law for the 2027 session.
+      </p>
+      <p class="text-base text-gray-300 max-w-2xl mx-auto font-light">
+        Built for coalition members, community advocates, and working group leaders who are turning research into legislative action.
+      </p>
+    </div>
+  </section>
+
+  <!-- Sticky Sub-Navigation -->
+  <div class="bg-white border-b border-gray-200 sticky top-16 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex overflow-x-auto py-3 gap-2 no-scrollbar" id="category-nav">
+        <a href="#legislative-process" class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-navy text-white hover:bg-opacity-90 transition">Legislative Process</a>
+        <a href="#bill-writing" class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-dark-gray hover:bg-gray-200 transition">Bill Writing</a>
+        <a href="#advocacy-skills" class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-dark-gray hover:bg-gray-200 transition">Advocacy Skills</a>
+        <a href="#rts-system" class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-dark-gray hover:bg-gray-200 transition">Request to Speak</a>
+        <a href="#strategic-planning" class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-dark-gray hover:bg-gray-200 transition">Strategic Planning</a>
+        <a href="#arizona-organizations" class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-maroon text-white hover:bg-opacity-90 transition">Arizona Reform Orgs</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="py-12 px-4 bg-light-gray">
+    <div class="max-w-6xl mx-auto space-y-16">
+
+      <!-- LEGISLATIVE PROCESS -->
+      <section id="legislative-process" class="scroll-mt-32">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-navy rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <div>
+            <h2 class="font-heading text-3xl text-navy">Understanding the Arizona Legislative Process</h2>
+            <p class="text-gray-500 text-sm mt-1">How a bill becomes law in Arizona, key timelines, and where advocates can intervene.</p>
+          </div>
+        </div>
+
+        <!-- Timeline Card -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h3 class="font-heading text-xl font-bold text-navy mb-4">2027 Session Timeline</h3>
+          <div class="space-y-4">
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-24 text-sm font-semibold text-navy">January</div>
+              <div class="flex-1 pb-4 border-l-2 border-gray-200 pl-4">
+                <p class="text-sm text-gray-600">Session convenes. Bill introductions begin. Committee hearings start. <strong class="text-dark-gray">Advocates:</strong> Begin RTS registrations, schedule legislator meetings.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-24 text-sm font-semibold text-navy">February</div>
+              <div class="flex-1 pb-4 border-l-2 border-gray-200 pl-4">
+                <p class="text-sm text-gray-600">Committee hearings continue. Bills moving through first committees. <strong class="text-dark-gray">Advocates:</strong> Testify at hearings, mobilize constituents in key districts.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-24 text-sm font-semibold text-navy">March</div>
+              <div class="flex-1 pb-4 border-l-2 border-gray-200 pl-4">
+                <p class="text-sm text-gray-600">Bill hearings intensify. Floor debates begin in originating chamber. <strong class="text-dark-gray">Advocates:</strong> Focus on floor vote persuasion for bills in your chamber.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-24 text-sm font-semibold text-maroon">April</div>
+              <div class="flex-1 pb-4 border-l-2 border-gray-200 pl-4">
+                <p class="text-sm text-gray-600"><strong class="text-dark-gray">Critical Deadline:</strong> Bills must pass originating chamber by end of month or die. Crossover to second chamber begins. <strong class="text-dark-gray">Advocates:</strong> All-hands mobilization for crossover bills.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-24 text-sm font-semibold text-navy">May</div>
+              <div class="flex-1 pb-4 border-l-2 border-gray-200 pl-4">
+                <p class="text-sm text-gray-600">Final votes and budget negotiations. Conference committees resolve differences. <strong class="text-dark-gray">Advocates:</strong> Target leadership and conference committee members.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-24 text-sm font-semibold text-navy">June-July</div>
+              <div class="flex-1 pl-4">
+                <p class="text-sm text-gray-600">Governor review period (5-day regular veto, 10-day after session adjournment). Override requires 2/3 vote. <strong class="text-dark-gray">Advocates:</strong> Direct advocacy to Governor's office on pending bills.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">How a Bill Becomes Law in Arizona</h3>
+              <span class="badge-advocacy">Guide</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">ACLU of Arizona breakdown of the nine steps a bill takes to become law at the Arizona Legislature. Includes timeline for January through July and explains when advocates should intervene in the process.</p>
+            <a href="https://www.acluaz.org/news/understanding-arizonas-legislative-process-how-bill-becomes-law/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              ACLU of Arizona
+            </a>
+          </div>
+
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">AZ Legislature 101 Guide (2025)</h3>
+              <span class="badge-educational">Guide</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Comprehensive guide to Arizona's legislature including how state government affects daily life, key players, processes, and power structures. Covers calling/writing legislators, social media engagement, letters to the editor, and the Request to Speak system.</p>
+            <a href="https://www.acluaz.org/app/uploads/2025/02/2539543_azlegislature101_guide_020425.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              ACLU of Arizona (PDF)
+            </a>
+          </div>
+
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">How to Become a Community Advocate at the Capitol</h3>
+              <span class="badge-advocacy">Advocacy</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Practical guide for amplifying voices at the Arizona Capitol. Tips on knowing your district, planning what to say, mentioning bill numbers, telling personal stories, and using the "problem, solution, action" framework.</p>
+            <a href="https://www.acluaz.org/news/how-become-community-advocate-arizona-state-legislature/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              ACLU of Arizona
+            </a>
+          </div>
+
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Arizona Legislature - ASU Law Library Guide</h3>
+              <span class="badge-educational">Educational</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">ASU's guide to the Arizona Legislature including how a bill becomes law, the Governor's five-day/ten-day veto timeline, override requirements (2/3 vote), and the initiative/referendum process (10% signature threshold for initiatives, 15% for constitutional amendments). Includes visual flowchart.</p>
+            <a href="https://libguides.law.asu.edu/ArizonaLaw/arizonalegislature" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              ASU Law Library
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- BILL WRITING -->
+      <section id="bill-writing" class="scroll-mt-32">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-maroon rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <div>
+            <h2 class="font-heading text-3xl text-navy">Bill Writing & Drafting</h2>
+            <p class="text-gray-500 text-sm mt-1">From concept to statutory language. The technical craft of legislation.</p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card border-l-4 border-maroon">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Arizona Legislative Bill Drafting Manual (2025-2026)</h3>
+              <span class="badge-government">Official</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed"><strong class="text-dark-gray">Required reading for anyone writing Arizona legislation.</strong> Covers proper use of present tense, "shall" vs. "may," "that" vs. "which," numbers and dates, section headings, strike-everything amendments, and formatting standards. The definitive authority on Arizona legislative drafting.</p>
+            <a href="https://www.azleg.gov/alisPDFs/council/2025-2026_bill_drafting_manual.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Arizona Legislature (PDF)
+            </a>
+          </div>
+
+          <div class="card border-l-4 border-maroon">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Advocacy: How to Draft Legislation | FAMM</h3>
+              <span class="badge-advocacy">Toolkit</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Practical guide for advocates on drafting legislation. Key advice: do your research and read similar bills; keep it simple and avoid wordiness; precision counts (courts will interpret every word); have multiple experts review; use NCSL's online drafting manuals for state-specific advice.</p>
+            <a href="https://famm.org/wp-content/uploads/2025/08/Advocacy-How-to-Draft-Legislation.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              FAMM (PDF)
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-sm p-6 mt-6">
+          <h3 class="font-heading text-lg font-bold text-navy mb-3">Key Principles for Drafting Arizona Legislation</h3>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="flex gap-3">
+              <div class="flex-shrink-0 w-8 h-8 bg-navy rounded-full flex items-center justify-center text-white text-sm font-bold">1</div>
+              <p class="text-sm text-gray-600"><strong class="text-dark-gray">Read similar bills first.</strong> Find legislation on related topics in Arizona and other states. Understand what has already been tried and what language courts have interpreted.</p>
+            </div>
+            <div class="flex gap-3">
+              <div class="flex-shrink-0 w-8 h-8 bg-navy rounded-full flex items-center justify-center text-white text-sm font-bold">2</div>
+              <p class="text-sm text-gray-600"><strong class="text-dark-gray">Keep it simple.</strong> Avoid wordiness and unnecessary complexity. Every word will be read by courts, agencies, and litigants. Clarity prevents unintended consequences.</p>
+            </div>
+            <div class="flex gap-3">
+              <div class="flex-shrink-0 w-8 h-8 bg-navy rounded-full flex items-center justify-center text-white text-sm font-bold">3</div>
+              <p class="text-sm text-gray-600"><strong class="text-dark-gray">Precision counts.</strong> "Shall" creates mandates; "may" creates permissions. "That" introduces restrictive clauses; "which" introduces non-restrictive ones. See the Bill Drafting Manual.</p>
+            </div>
+            <div class="flex gap-3">
+              <div class="flex-shrink-0 w-8 h-8 bg-navy rounded-full flex items-center justify-center text-white text-sm font-bold">4</div>
+              <p class="text-sm text-gray-600"><strong class="text-dark-gray">Have experts review.</strong> Before introducing, have attorneys, legislative counsel, and subject-matter experts review the draft. FAMM offers legislative examples upon request.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADVOCACY SKILLS -->
+      <section id="advocacy-skills" class="scroll-mt-32">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-navy rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
+          </div>
+          <div>
+            <h2 class="font-heading text-3xl text-navy">Advocacy Skills & Persuasion</h2>
+            <p class="text-gray-500 text-sm mt-1">Frameworks for effective legislative persuasion, grassroots organizing, and coalition building.</p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Grassroots Toolkit - How a Bill Becomes Law</h3>
+              <span class="badge-advocacy">Advocacy</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Effective grassroots advocacy techniques: mention bill number and position in first two sentences; keep communications to one page; explain constituent impact; avoid form letters; time contacts before committee votes for committee members and before floor votes for other representatives.</p>
+            <a href="https://www.nata.org/sites/default/files/2025-08/grassroots-toolkit.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              National Athletic Trainers' Association (PDF)
+            </a>
+          </div>
+
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Effective and Persuasive Advocacy in 5 Simple Steps</h3>
+              <span class="badge-advocacy">Training</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Five-step framework for legislative persuasion: (I) Gain Attention, (II) Explain the Need with local statistics, (III) Provide a Solution, (IV) Help Visualize Benefits using legislator-friendly language, (V) Ask for Action. Includes sample letter formats and phone scripts.</p>
+            <a href="https://parc.nbcc.org/lib/pdf/NBCC-Advocacy-Toolkit-2025-DC-Cover.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              NBCC/PARC (PDF)
+            </a>
+          </div>
+
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Legislative Advocacy Toolkit - Three Tiered Agenda</h3>
+              <span class="badge-advocacy">Toolkit</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Framework for developing a legislative/public policy agenda including a "Three Tiered" approach: Tier 1 (actively pursue), Tier 2 (support/oppose as needed), Tier 3 (monitor). Useful for coalition agenda-setting and ensuring all working groups speak with one voice.</p>
+            <a href="https://www.nationalchildrensalliance.org/advocacytools/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              National Children's Alliance
+            </a>
+          </div>
+
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Justice Action Network - Arizona Priorities & Track Record</h3>
+              <span class="badge-advocacy">State Org</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">JAN's 2026 Arizona priorities: correctional oversight funding ($1.5M for new independent office, SB 1032); ending driver's license suspensions for unpaid traffic tickets; waiver of remaining court debt after consistent payments; retroactive applicability for reform bills. 25 bills passed in Arizona since 2016.</p>
+            <a href="https://www.justiceactionnetwork.org/news/our-2026-state-priorities-a-big-year-for-smart-justice-reform" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Justice Action Network
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- REQUEST TO SPEAK -->
+      <section id="rts-system" class="scroll-mt-32">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-maroon rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
+          </div>
+          <div>
+            <h2 class="font-heading text-3xl text-navy">Request to Speak (RTS) System</h2>
+            <p class="text-gray-500 text-sm mt-1">Arizona's remote advocacy platform. How to register, speak at hearings, and amplify your voice.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6 border-l-4 border-maroon">
+          <h3 class="font-heading text-lg font-bold text-navy mb-3">Getting Started with RTS</h3>
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div class="bg-light-gray rounded-lg p-4">
+              <div class="text-sm font-bold text-navy mb-2">Step 1: Activate Your Account</div>
+              <p class="text-sm text-gray-600">You must physically visit the Capitol once to create an RTS account at a kiosk (House, Senate, or Tucson office). After activation, all advocacy can be done remotely.</p>
+            </div>
+            <div class="bg-light-gray rounded-lg p-4">
+              <div class="text-sm font-bold text-navy mb-2">Step 2: Register Your Opinion</div>
+              <p class="text-sm text-gray-600">Log in to RTS to register support or opposition on bills. Leave comments for committee members explaining your position with constituent impact details.</p>
+            </div>
+            <div class="bg-light-gray rounded-lg p-4">
+              <div class="text-sm font-bold text-navy mb-2">Step 3: Request to Speak</div>
+              <p class="text-sm text-gray-600">Request to speak at committee hearings. You can testify in person or remotely. The system tracks requests and committee chairs call speakers in order.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Official RTS System Guide</h3>
+              <span class="badge-government">Government</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Official state guide to using the Request to Speak system. Explains the one-time physical activation requirement, how to register opinions, leave comments for committee members, and request to speak at hearings. Critical tool for remote advocacy.</p>
+            <a href="https://www.azleg.gov/alispdfs/using_the_request_to_speak_program.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Arizona Legislature (PDF)
+            </a>
+          </div>
+
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">ACLU RTS Training & Advocacy Guide</h3>
+              <span class="badge-advocacy">Training</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">The ACLU of Arizona provides RTS training and legislative advocacy guides. Covers bill tracking, effective testimony preparation, and coordination strategies for coalition advocates at the Capitol.</p>
+            <a href="https://www.acluaz.org/news/how-become-community-advocate-arizona-state-legislature/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              ACLU of Arizona
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- STRATEGIC PLANNING -->
+      <section id="strategic-planning" class="scroll-mt-32">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-navy rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+          <div>
+            <h2 class="font-heading text-3xl text-navy">Strategic Planning & Policy Development</h2>
+            <p class="text-gray-500 text-sm mt-1">Frameworks for coalition planning, CJCC coordination, and developing evidence-based reform agendas.</p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">NCJA Strategic Planning Toolkit</h3>
+              <span class="badge-research">Toolkit</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Comprehensive toolkit for criminal justice strategic planning. Includes resources on behavioral health partnerships, the Sequential Intercept Model, braided funding, Death in Custody Reporting Act compliance, crisis planning, and Byrne JAG strategic planning workshops.</p>
+            <a href="https://www.ncja.org/strategic-planning-toolkit" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              National Criminal Justice Association
+            </a>
+          </div>
+
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">NCJA Center for Justice Planning</h3>
+              <span class="badge-research">Guide</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Guide to local Criminal Justice Coordinating Councils (CJCCs) and state-local justice coordination. Includes recommendations for data collection, analysis for policy purposes, supporting local coordinating councils, and grant incentives for jurisdictions with planning boards.</p>
+            <a href="https://www.ncja.org/local-engagement" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              NCJA
+            </a>
+          </div>
+
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">NCJA Policy Statements</h3>
+              <span class="badge-research">Policy</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Policy statements covering: prisoner reentry (evidence-based programs, validated risk assessment, continuum of services); racial disparity (research funding, distinguishing system-caused vs. external factors); role of State Administering Agencies; tribal nations and criminal justice; state strategic planning.</p>
+            <a href="https://www.ncja.org/policies" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              NCJA
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ARIZONA REFORM ORGANIZATIONS -->
+      <section id="arizona-organizations" class="scroll-mt-32">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-maroon rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          </div>
+          <div>
+            <h2 class="font-heading text-3xl text-navy">Arizona Reform Organizations</h2>
+            <p class="text-gray-500 text-sm mt-1">State-based allies, legal clinics, and advocacy groups working alongside FAIR Group.</p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Arizona Justice Project</h3>
+              <span class="badge-advocacy">Legal</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Works on innocence claims, unjust sentencing, and post-release support. Successfully advocated for SB 1500 (2025) creating Arizona's first wrongful conviction compensation program (pilot through June 2027). $3 million appropriated. Compensation at 200% of median household income per year incarcerated.</p>
+            <a href="https://azjusticeproject.org/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              azjusticeproject.org
+            </a>
+          </div>
+
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">University of Arizona Innocence Project</h3>
+              <span class="badge-educational">Clinic</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Provides pro bono legal services to convicted individuals with claims of actual innocence. Trains law students in causes of wrongful convictions and innocence litigation. Fills gap where Arizona defendants are not entitled to appointed counsel beyond initial postconviction proceedings.</p>
+            <a href="https://law.arizona.edu/academics/clinics/university-arizona-innocence-project" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              UA Law
+            </a>
+          </div>
+
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Just Communities Arizona</h3>
+              <span class="badge-advocacy">Advocacy</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Community organization focused on ending mass incarceration in Arizona. Publishes budget analyses, policy critiques, and advocacy materials. Critical of ADCRR spending priorities and infrastructure failures.</p>
+            <a href="https://justcommunitiesarizona.org/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              justcommunitiesarizona.org
+            </a>
+          </div>
+
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Middle Ground Prison Reform</h3>
+              <span class="badge-educational">Education</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Longstanding Arizona prison reform organization providing educational resources on community supervision, parole, truth-in-sentencing, and legislative developments. Maintains extensive FAQ and resource library.</p>
+            <a href="https://www.middlegroundprisonreform.org/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              middlegroundprisonreform.org
+            </a>
+          </div>
+
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">ACLU of Arizona - Smart Justice</h3>
+              <span class="badge-advocacy">Advocacy</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Active legislative advocacy at Arizona Capitol. Provides RTS training, legislative process guides, and bill tracking. Key 2025 wins: SB 1507 (independent correctional oversight office), HB 2720 (ended crack-cocaine disparity), SB 1343 (expanded probation courtesy transfers). 2026 priorities include oversight funding, court debt reforms, and Clean Slate expungement.</p>
+            <a href="https://www.acluaz.org/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              acluaz.org
+            </a>
+          </div>
+
+          <div class="card">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">FWD.us - Arizona Research</h3>
+              <span class="badge-research">Research</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Immigration and criminal justice reform organization producing state-specific research. Arizona reports on imprisonment crisis, earned release credits, and economic impact. Uses individual-level corrections data cleaned to national standards.</p>
+            <a href="https://www.fwd.us/news/arizona-imprisonment-crisis-part-1/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              FWD.us
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark-gray text-gray-300 py-10 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <h4 class="font-heading text-white text-lg mb-3">FAIR Group</h4>
+          <p class="text-sm leading-relaxed text-gray-400">
+            Fairness and Accountability Integrated Responsibly. Arizona's bipartisan criminal justice reform coalition.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-heading text-white text-lg mb-3">Toolkit Sections</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#legislative-process" class="hover:text-white transition-colors">Legislative Process</a></li>
+            <li><a href="#bill-writing" class="hover:text-white transition-colors">Bill Writing</a></li>
+            <li><a href="#advocacy-skills" class="hover:text-white transition-colors">Advocacy Skills</a></li>
+            <li><a href="#rts-system" class="hover:text-white transition-colors">Request to Speak</a></li>
+            <li><a href="#arizona-organizations" class="hover:text-white transition-colors">Arizona Organizations</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-heading text-white text-lg mb-3">Infrastructure</h4>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Coordination and strategy support provided by the <strong class="text-gray-200">Praxis Initiative</strong>, a 100% system-impacted nonprofit based in Phoenix, Arizona.
+          </p>
+        </div>
+      </div>
+      <div class="border-t border-gray-600 pt-6 text-center text-sm text-gray-500">
+        <p>&copy; 2026 FAIR Group. Infrastructure provided by Praxis Initiative, Phoenix, AZ.</p>
+      </div>
+    </div>
+  </footer>
+<script src="/src/js/app.js"></script>
+  <script src="/src/js/nav.js"></script>
+  <script>
+    // Category nav active state on scroll
+    (function() {
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('#category-nav a');
+
+      function onScroll() {
+        const scrollPos = window.scrollY + 200;
+        sections.forEach(section => {
+          if (section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos) {
+            navLinks.forEach(link => {
+              link.classList.remove('bg-navy', 'text-white', 'bg-maroon');
+              link.classList.add('bg-gray-100', 'text-dark-gray');
+              if (link.getAttribute('href') === '#' + section.id) {
+                link.classList.remove('bg-gray-100', 'text-dark-gray');
+                link.classList.add('bg-navy', 'text-white');
+              }
+            });
+          }
+        });
+      }
+
+      window.addEventListener('scroll', onScroll);
+      onScroll();
+    })();
+  </script>
+
+</body>
+</html>

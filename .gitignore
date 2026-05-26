@@ -1,0 +1,11 @@
+node_modules/
+.env
+database.sqlite
+database.sqlite-wal
+database.sqlite-shm
+logs/
+dist/style.css
+.agents/
+.vs/
+backups/
+utputFormat

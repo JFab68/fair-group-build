@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAIR Group - Fairness and Accountability Integrated Responsibly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/dist/style.css">
+</head>
+<body class="font-body text-dark-gray bg-white">
+
+  <!-- Navigation -->
+  <nav class="bg-navy sticky top-0 z-50 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center">
+          <a href="/" class="flex items-center space-x-2">
+            <span class="text-white font-heading text-xl font-bold">FAIR Group</span>
+          </a>
+        </div>
+        <!-- Desktop nav -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="/" class="nav-link">Home</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="/resources.html" class="nav-link">Research Library</a>
+          <a href="/advocacy-toolkit.html" class="nav-link">Advocacy Toolkit</a>
+          <a href="signup.html" class="nav-link">Sign Up</a>
+          <a href="login.html" class="btn-secondary text-sm px-4 py-2">Login</a>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-btn" class="text-white focus:outline-none focus:ring-2 focus:ring-white rounded p-1" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-navy border-t border-blue-900">
+      <div class="px-4 py-4 space-y-3">
+        <a href="/" class="block nav-link py-1">Home</a>
+        <a href="#about" class="block nav-link py-1">About</a>
+        <a href="/resources.html" class="block nav-link py-1">Research Library</a>
+        <a href="/advocacy-toolkit.html" class="block nav-link py-1">Advocacy Toolkit</a>
+        <a href="signup.html" class="block nav-link py-1">Sign Up</a>
+        <a href="login.html" class="block nav-link py-1">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="bg-navy text-white py-24 px-4">
+    <div class="max-w-5xl mx-auto text-center">
+      <h1 class="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight">
+        Fairness and Accountability<br class="hidden sm:block"> Integrated Responsibly
+      </h1>
+      <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-4 font-light leading-relaxed">
+        A bipartisan Arizona coalition preparing the 2027 legislative agenda for meaningful, lasting criminal justice reform. Led by Representative Powell, grounded in evidence, and built by the people most affected.
+      </p>
+      <p class="text-base md:text-lg text-gray-300 max-w-2xl mx-auto mb-10 font-light">
+        Citizens, families, advocates, and lawmakers working together across the Eight P framework to create a safer, fairer Arizona.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="signup.html" class="btn-secondary text-base px-8 py-4 inline-block">Join the Coalition</a>
+        <a href="#about" class="btn-outline border-white text-white hover:bg-white hover:text-navy text-base px-8 py-4 inline-block">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Eight P Section -->
+  <section id="about" class="py-20 px-4 bg-light-gray">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14">
+        <h2 class="section-heading">About the Coalition</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
+          FAIR Group is a bipartisan coalition under Representative Powell's leadership, bringing together Arizona citizens, people who have experienced the justice system firsthand, families of incarcerated people, advocacy organizations, and lawmakers to build a shared 2027 legislative agenda.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-start mb-16">
+        <div>
+          <h3 class="font-heading text-2xl text-navy mb-4">Our Approach: The Eight P Framework</h3>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            Effective criminal justice reform requires addressing the entire system, not isolated parts. The Eight P Framework provides the analytical structure our coalition uses to identify problems, evaluate solutions, and coordinate legislative action across every stage of the justice process.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            Each "P" represents a distinct domain of the system. Sustainable reform requires alignment across all eight. Our six working groups map directly to these domains, ensuring no part of the system goes unexamined.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="card border-l-4 border-navy">
+            <div class="text-navy font-heading text-lg font-bold mb-1">Police</div>
+            <p class="text-sm text-gray-600">Law enforcement practices and accountability</p>
+          </div>
+          <div class="card border-l-4 border-navy">
+            <div class="text-navy font-heading text-lg font-bold mb-1">Pretrial</div>
+            <p class="text-sm text-gray-600">Detention decisions and bail reform</p>
+          </div>
+          <div class="card border-l-4 border-navy">
+            <div class="text-navy font-heading text-lg font-bold mb-1">Prosecution</div>
+            <p class="text-sm text-gray-600">Charging decisions and prosecutorial oversight</p>
+          </div>
+          <div class="card border-l-4 border-navy">
+            <div class="text-navy font-heading text-lg font-bold mb-1">Probation</div>
+            <p class="text-sm text-gray-600">Community supervision conditions and violations</p>
+          </div>
+          <div class="card border-l-4 border-maroon">
+            <div class="text-maroon font-heading text-lg font-bold mb-1">Prison</div>
+            <p class="text-sm text-gray-600">Incarceration conditions and programming</p>
+          </div>
+          <div class="card border-l-4 border-maroon">
+            <div class="text-maroon font-heading text-lg font-bold mb-1">Parole / Post-Release</div>
+            <p class="text-sm text-gray-600">Reentry support and supervision</p>
+          </div>
+          <div class="card border-l-4 border-maroon">
+            <div class="text-maroon font-heading text-lg font-bold mb-1">Policy</div>
+            <p class="text-sm text-gray-600">Legislative frameworks and statutory reform</p>
+          </div>
+          <div class="card border-l-4 border-maroon">
+            <div class="text-maroon font-heading text-lg font-bold mb-1">Power</div>
+            <p class="text-sm text-gray-600">Decision-making structures and accountability</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coalition Purpose -->
+      <div class="bg-white rounded-lg p-8 shadow-md max-w-4xl mx-auto text-center">
+        <h3 class="font-heading text-2xl text-navy mb-4">Why 2027 Matters</h3>
+        <p class="text-gray-600 leading-relaxed text-lg">
+          The Arizona Legislature's 2027 session is our target. We are building the evidence base, coalition relationships, and legislative strategy now so that when the session opens, FAIR Group's agenda arrives with unified, bipartisan support ready to move. This is not reactive advocacy. It is deliberate infrastructure for lasting change.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Working Groups Section -->
+  <section id="working-groups" class="py-20 px-4 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14">
+        <h2 class="section-heading">Six Working Groups</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+          Coalition members organize into six legislative working groups, each focused on a specific domain of the Arizona criminal justice system.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="card border-t-4 border-navy">
+          <h3 class="font-heading text-xl text-navy mb-3">Criminal Code</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Reviews Arizona's statutory criminal code for outdated definitions, disproportionate offense classifications, and provisions that produce unjust outcomes. Develops proposals for codification reforms that improve clarity, consistency, and fairness.
+          </p>
+        </div>
+
+        <div class="card border-t-4 border-navy">
+          <h3 class="font-heading text-xl text-navy mb-3">Prosecution</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Examines charging practices, prosecutorial discretion, plea negotiation standards, and accountability mechanisms. Develops recommendations to ensure prosecutorial decisions are transparent, consistent, and proportionate.
+          </p>
+        </div>
+
+        <div class="card border-t-4 border-navy">
+          <h3 class="font-heading text-xl text-navy mb-3">Sentencing</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Analyzes mandatory minimum sentences, truth-in-sentencing provisions, sentence enhancements, and disparities across Arizona's sentencing structures. Produces evidence-based recommendations for proportional, consistent sentencing.
+          </p>
+        </div>
+
+        <div class="card border-t-4 border-maroon">
+          <h3 class="font-heading text-xl text-maroon mb-3">Community Supervision</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Focuses on probation and parole conditions, technical violation responses, and reentry support. Develops proposals that reduce unnecessary incarceration for supervision failures while supporting successful community reintegration.
+          </p>
+        </div>
+
+        <div class="card border-t-4 border-maroon">
+          <h3 class="font-heading text-xl text-maroon mb-3">Police and Enforcement</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Reviews law enforcement practices, use-of-force standards, accountability frameworks, and community relations. Develops legislative proposals that strengthen public safety and build trust between law enforcement and the communities they serve.
+          </p>
+        </div>
+
+        <div class="card border-t-4 border-maroon">
+          <h3 class="font-heading text-xl text-maroon mb-3">Incarceration and Rehabilitation</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Examines conditions inside Arizona correctional facilities, access to programming, educational opportunities, and the evidence base for rehabilitation. Develops proposals that improve outcomes for people who are incarcerated and reduce recidivism.
+          </p>
+        </div>
+
+      </div>
+      <div class="text-center mt-10">
+        <a href="signup.html" class="btn-primary inline-block">Join a Working Group</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section id="partners" class="py-20 px-4 bg-light-gray">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-14">
+        <h2 class="section-heading">Coalition Partners</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+          FAIR Group works alongside national and regional organizations committed to evidence-based criminal justice reform.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <div class="bg-white rounded-lg p-5 shadow-sm flex items-center space-x-4">
+          <div class="w-10 h-10 bg-navy rounded-full flex items-center justify-center flex-shrink-0" aria-hidden="true">
+            <span class="text-white text-xs font-bold">F</span>
+          </div>
+          <div>
+            <div class="font-semibold text-dark-gray">FAMM</div>
+            <div class="text-xs text-gray-500">National Coalition Partner</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg p-5 shadow-sm flex items-center space-x-4">
+          <div class="w-10 h-10 bg-navy rounded-full flex items-center justify-center flex-shrink-0" aria-hidden="true">
+            <span class="text-white text-xs font-bold">JA</span>
+          </div>
+          <div>
+            <div class="font-semibold text-dark-gray">Justice Action Network</div>
+            <div class="text-xs text-gray-500">National Coalition Partner</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg p-5 shadow-sm flex items-center space-x-4">
+          <div class="w-10 h-10 bg-maroon rounded-full flex items-center justify-center flex-shrink-0" aria-hidden="true">
+            <span class="text-white text-xs font-bold">AV</span>
+          </div>
+          <div>
+            <div class="font-semibold text-dark-gray">Arnold Ventures</div>
+            <div class="text-xs text-gray-500">Funding Partner</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg p-5 shadow-sm flex items-center space-x-4">
+          <div class="w-10 h-10 bg-navy rounded-full flex items-center justify-center flex-shrink-0" aria-hidden="true">
+            <span class="text-white text-xs font-bold">RC</span>
+          </div>
+          <div>
+            <div class="font-semibold text-dark-gray">Right on Crime</div>
+            <div class="text-xs text-gray-500">Coalition Partner</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg p-5 shadow-sm flex items-center space-x-4">
+          <div class="w-10 h-10 bg-navy rounded-full flex items-center justify-center flex-shrink-0" aria-hidden="true">
+            <span class="text-white text-xs font-bold">CN</span>
+          </div>
+          <div>
+            <div class="font-semibold text-dark-gray">CPAC Nolan Center</div>
+            <div class="text-xs text-gray-500">Coalition Partner</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg p-5 shadow-sm flex items-center space-x-4">
+          <div class="w-10 h-10 bg-maroon rounded-full flex items-center justify-center flex-shrink-0" aria-hidden="true">
+            <span class="text-white text-xs font-bold">SG</span>
+          </div>
+          <div>
+            <div class="font-semibold text-dark-gray">Steven George Law</div>
+            <div class="text-xs text-gray-500">Legal Partnership (CLE Series)</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg p-5 shadow-sm flex items-center space-x-4">
+          <div class="w-10 h-10 bg-navy rounded-full flex items-center justify-center flex-shrink-0" aria-hidden="true">
+            <span class="text-white text-xs font-bold">MP</span>
+          </div>
+          <div>
+            <div class="font-semibold text-dark-gray">Magnus Public Policy</div>
+            <div class="text-xs text-gray-500">Lobbying</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg p-5 shadow-sm flex items-center space-x-4">
+          <div class="w-10 h-10 bg-navy rounded-full flex items-center justify-center flex-shrink-0" aria-hidden="true">
+            <span class="text-white text-xs font-bold">PF</span>
+          </div>
+          <div>
+            <div class="font-semibold text-dark-gray">Policy Forge</div>
+            <div class="text-xs text-gray-500">Lobbying</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg p-5 shadow-sm flex items-center space-x-4">
+          <div class="w-10 h-10 bg-maroon rounded-full flex items-center justify-center flex-shrink-0" aria-hidden="true">
+            <span class="text-white text-xs font-bold">V</span>
+          </div>
+          <div>
+            <div class="font-semibold text-dark-gray">Veridus</div>
+            <div class="text-xs text-gray-500">Lobbying</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-20 px-4 bg-navy text-white text-center">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6">Ready to Get Involved?</h2>
+      <p class="text-gray-200 text-lg mb-10 leading-relaxed">
+        FAIR Group is open to Arizona citizens, advocacy organizations, returning community members, and lawmakers committed to building a fairer, more accountable justice system. Your voice belongs in this coalition.
+      </p>
+      <a href="signup.html" class="btn-secondary text-base px-8 py-4 inline-block">Join the Coalition</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark-gray text-gray-300 py-10 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <h4 class="font-heading text-white text-lg mb-3">FAIR Group</h4>
+          <p class="text-sm leading-relaxed text-gray-400">
+            Fairness and Accountability Integrated Responsibly. Arizona's bipartisan criminal justice reform coalition.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-heading text-white text-lg mb-3">Quick Links</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="#about" class="hover:text-white transition-colors">About</a></li>
+            <li><a href="#working-groups" class="hover:text-white transition-colors">Working Groups</a></li>
+            <li><a href="signup.html" class="hover:text-white transition-colors">Join the Coalition</a></li>
+            <li><a href="login.html" class="hover:text-white transition-colors">Member Login</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-heading text-white text-lg mb-3">Infrastructure</h4>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Coordination and strategy support provided by the <strong class="text-gray-200">Praxis Initiative</strong>, a 100% system-impacted nonprofit based in Phoenix, Arizona.
+          </p>
+        </div>
+      </div>
+      <div class="border-t border-gray-600 pt-6 text-center text-sm text-gray-500">
+        <p>&copy; 2026 FAIR Group. Infrastructure provided by Praxis Initiative, Phoenix, AZ.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/src/js/nav.js"></script>
+
+</body>
+</html>

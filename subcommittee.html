@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Working Group - FAIR Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/dist/style.css">
+</head>
+<body data-page="subcommittee" class="font-body text-dark-gray bg-light-gray min-h-screen flex flex-col">
+
+  <!-- Navigation -->
+  <nav class="bg-navy shadow-lg" role="navigation" aria-label="Main navigation">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center space-x-4">
+          <a href="/dashboard.html" class="text-white font-heading text-xl font-bold" aria-label="FAIR Group dashboard home">FAIR Group</a>
+          <span class="text-blue-300 hidden sm:block" aria-hidden="true">/</span>
+          <a href="/dashboard.html" class="text-blue-200 hover:text-white text-sm font-medium transition-colors hidden sm:block">Dashboard</a>
+        </div>
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="/dashboard.html" class="nav-link">Dashboard</a>
+          <a href="/profile.html" class="nav-link">Profile</a>
+          <button
+            id="logout-btn"
+            class="btn-secondary text-sm px-4 py-2"
+            aria-label="Sign out of your account"
+          >
+            Sign Out
+          </button>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button
+            id="mobile-menu-btn"
+            class="text-white focus:outline-none focus:ring-2 focus:ring-white rounded p-1"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-navy border-t border-blue-900">
+      <div class="px-4 py-4 space-y-3">
+        <a href="/dashboard.html" class="block nav-link py-1">Dashboard</a>
+        <a href="/profile.html" class="block nav-link py-1">Profile</a>
+        <a href="/resources.html" class="block nav-link py-1">Research Library</a>
+        <a href="/advocacy-toolkit.html" class="block nav-link py-1">Advocacy Toolkit</a>
+        <button id="logout-btn-mobile" class="block w-full text-left nav-link py-1">Sign Out</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-10 px-4">
+    <div class="max-w-5xl mx-auto">
+
+      <!-- Group Header -->
+      <div class="mb-8">
+        <a href="/dashboard.html" class="inline-flex items-center text-sm text-navy hover:text-maroon font-medium transition-colors mb-4" aria-label="Back to working group list">
+          <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          Back to Dashboard
+        </a>
+        <h1 id="group-title" class="font-heading text-3xl md:text-4xl font-bold text-navy"></h1>
+        <p class="text-gray-500 mt-2 text-sm">FAIR Group Working Group Workspace</p>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+        <div class="border-b border-gray-200" role="tablist" aria-label="Working group sections">
+          <div class="flex overflow-x-auto">
+            <button
+              data-tab="overview"
+              class="px-6 py-4 text-sm font-medium border-b-2 border-navy text-navy whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-inset focus:ring-navy transition-colors"
+              role="tab"
+              aria-selected="true"
+              aria-controls="tab-overview"
+              id="tab-btn-overview"
+            >
+              Overview
+            </button>
+            <button
+              data-tab="resources"
+              class="px-6 py-4 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-navy hover:border-gray-300 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-inset focus:ring-navy transition-colors"
+              role="tab"
+              aria-selected="false"
+              aria-controls="tab-resources"
+              id="tab-btn-resources"
+            >
+              Resources
+            </button>
+            <button
+              data-tab="calendar"
+              class="px-6 py-4 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-navy hover:border-gray-300 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-inset focus:ring-navy transition-colors"
+              role="tab"
+              aria-selected="false"
+              aria-controls="tab-calendar"
+              id="tab-btn-calendar"
+            >
+              Calendar
+            </button>
+            <button
+              data-tab="attendance"
+              class="px-6 py-4 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-navy hover:border-gray-300 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-inset focus:ring-navy transition-colors"
+              role="tab"
+              aria-selected="false"
+              aria-controls="tab-attendance"
+              id="tab-btn-attendance"
+            >
+              Attendance
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab Content: Overview -->
+        <div
+          data-tab-content="overview"
+          id="tab-overview"
+          class="p-6 md:p-8"
+          role="tabpanel"
+          aria-labelledby="tab-btn-overview"
+        >
+          <h2 class="font-heading text-xl font-bold text-navy mb-4">Working Group Overview</h2>
+          <div class="prose prose-sm max-w-none text-gray-600 space-y-4">
+            <p>
+              This working group is developing evidence-based reform recommendations for Arizona's 2027 legislative session. Members include coalition partners, system-impacted community members, policy professionals, and legislative stakeholders working collaboratively toward meaningful, lasting change.
+            </p>
+            <div class="bg-light-gray rounded-lg p-5 mt-4">
+              <h3 class="font-heading font-bold text-dark-gray mb-3">Leadership</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <p class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Chair</p>
+                  <p class="text-sm font-medium text-dark-gray">To be assigned</p>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Vice Chair</p>
+                  <p class="text-sm font-medium text-dark-gray">To be assigned</p>
+                </div>
+              </div>
+            </div>
+            <div class="bg-light-gray rounded-lg p-5">
+              <h3 class="font-heading font-bold text-dark-gray mb-3">Mission</h3>
+              <p class="text-sm text-gray-600">
+                This group is preparing specific, actionable legislative recommendations grounded in data, community input, and best practices from reform efforts across the country. All proposals will be reviewed by the full FAIR Group coalition prior to the 2027 session.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Content: Resources -->
+        <div
+          data-tab-content="resources"
+          id="tab-resources"
+          class="hidden p-6 md:p-8"
+          role="tabpanel"
+          aria-labelledby="tab-btn-resources"
+        >
+          <h2 class="font-heading text-xl font-bold text-navy mb-4">Resources</h2>
+          <p class="text-gray-600 text-sm mb-6">
+            Legislative documents, research reports, policy briefs, and reference materials for this working group will appear here as they are added by group leadership and the Praxis Initiative team.
+          </p>
+          <div class="border-2 border-dashed border-gray-200 rounded-lg p-10 text-center">
+            <svg class="w-10 h-10 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <p class="text-gray-400 text-sm font-medium">No resources posted yet</p>
+            <p class="text-gray-400 text-xs mt-1">Check back after the first working group session.</p>
+          </div>
+        </div>
+
+        <!-- Tab Content: Calendar -->
+        <div
+          data-tab-content="calendar"
+          id="tab-calendar"
+          class="hidden p-6 md:p-8"
+          role="tabpanel"
+          aria-labelledby="tab-btn-calendar"
+        >
+          <h2 class="font-heading text-xl font-bold text-navy mb-4">Meeting Calendar</h2>
+          <p class="text-gray-600 text-sm mb-6">
+            Upcoming meeting dates, times, and locations for this working group. Members will receive email reminders in advance of each session.
+          </p>
+          <div class="border-2 border-dashed border-gray-200 rounded-lg p-10 text-center">
+            <svg class="w-10 h-10 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            <p class="text-gray-400 text-sm font-medium">No meetings scheduled yet</p>
+            <p class="text-gray-400 text-xs mt-1">Meeting dates will be posted once the group convenes.</p>
+          </div>
+        </div>
+
+        <!-- Tab Content: Attendance -->
+        <div
+          data-tab-content="attendance"
+          id="tab-attendance"
+          class="hidden p-6 md:p-8"
+          role="tabpanel"
+          aria-labelledby="tab-btn-attendance"
+        >
+          <h2 class="font-heading text-xl font-bold text-navy mb-4">Attendance Records</h2>
+          <p class="text-gray-600 text-sm mb-6">
+            Session attendance records for working group members. Consistent participation strengthens the group's ability to produce consensus-based recommendations for the 2027 legislative agenda.
+          </p>
+          <div class="border-2 border-dashed border-gray-200 rounded-lg p-10 text-center">
+            <svg class="w-10 h-10 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+            </svg>
+            <p class="text-gray-400 text-sm font-medium">No attendance records yet</p>
+            <p class="text-gray-400 text-xs mt-1">Records will appear after the first meeting.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark-gray text-gray-400 py-6 px-4 mt-auto">
+    <div class="max-w-6xl mx-auto text-center text-sm">
+      <p>&copy; 2026 FAIR Group. Infrastructure provided by Praxis Initiative, Phoenix, AZ.</p>
+    </div>
+  </footer>
+
+  <script src="/src/js/nav.js"></script>
+  <script src="/src/js/app.js"></script>
+</body>
+</html>

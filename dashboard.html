@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Dashboard - FAIR Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/dist/style.css">
+</head>
+<body data-page="dashboard" class="font-body text-dark-gray bg-light-gray min-h-screen flex flex-col">
+
+  <!-- Navigation -->
+  <nav class="bg-navy shadow-lg" role="navigation" aria-label="Main navigation">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/dashboard.html" class="text-white font-heading text-xl font-bold" aria-label="FAIR Group dashboard home">FAIR Group</a>
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="/dashboard.html" class="nav-link font-medium" aria-current="page">Dashboard</a>
+          <a href="/profile.html" class="nav-link">Profile</a>
+          <a href="/resources.html" class="nav-link">Research Library</a>
+          <a href="/advocacy-toolkit.html" class="nav-link">Advocacy Toolkit</a>
+          <a href="/admin.html" id="admin-link" class="nav-link hidden">Admin</a>
+          <button
+            id="logout-btn"
+            class="btn-secondary text-sm px-4 py-2"
+            aria-label="Sign out of your account"
+          >
+            Sign Out
+          </button>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button
+            id="mobile-menu-btn"
+            class="text-white focus:outline-none focus:ring-2 focus:ring-white rounded p-1"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-navy border-t border-blue-900">
+      <div class="px-4 py-4 space-y-3">
+        <a href="/dashboard.html" class="block nav-link py-1">Dashboard</a>
+        <a href="/profile.html" class="block nav-link py-1">Profile</a>
+        <a href="/resources.html" class="block nav-link py-1">Research Library</a>
+        <a href="/advocacy-toolkit.html" class="block nav-link py-1">Advocacy Toolkit</a>
+        <a href="/admin.html" class="block nav-link py-1 hidden" id="admin-link-mobile">Admin</a>
+        <button id="logout-btn-mobile" class="block w-full text-left nav-link py-1">Sign Out</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-10 px-4" id="main-content">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Welcome Banner -->
+      <div class="bg-white rounded-lg shadow-sm border-l-4 border-maroon px-6 py-5 mb-8">
+        <h1 class="font-heading text-2xl md:text-3xl font-bold text-navy">
+          Welcome, <span id="welcome-name" class="text-maroon"></span>
+        </h1>
+        <p class="text-gray-500 mt-1 text-sm">
+          Access your working group workspaces and collaborate on Arizona's 2027 legislative agenda.
+        </p>
+      </div>
+
+      <!-- Working Groups Section -->
+      <section aria-labelledby="working-groups-heading">
+        <h2 id="working-groups-heading" class="section-heading mb-6">Working Groups</h2>
+        <p class="text-gray-600 mb-8 max-w-2xl">
+          Select a working group below to access its resources, calendar, attendance records, and collaborative materials. Each group is preparing reform recommendations for the 2027 Arizona legislative session.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Criminal Code -->
+          <a
+            href="/subcommittee.html?group=Criminal+Code"
+            class="card group flex flex-col justify-between hover:border-navy transition-all duration-200 no-underline"
+            aria-label="Enter the Criminal Code working group workspace"
+          >
+            <div>
+              <div class="w-10 h-10 bg-navy rounded-lg flex items-center justify-center mb-4" aria-hidden="true">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              </div>
+              <h3 class="font-heading text-lg font-bold text-navy mb-2 group-hover:text-maroon transition-colors">Criminal Code</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Review and propose reforms to Arizona's criminal statutes, definitions, and code structure to ensure clarity, proportionality, and equity.
+              </p>
+            </div>
+            <div class="mt-4 flex items-center text-navy text-sm font-semibold group-hover:text-maroon transition-colors" aria-hidden="true">
+              Enter workspace
+              <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Prosecution -->
+          <a
+            href="/subcommittee.html?group=Prosecution"
+            class="card group flex flex-col justify-between hover:border-navy transition-all duration-200 no-underline"
+            aria-label="Enter the Prosecution working group workspace"
+          >
+            <div>
+              <div class="w-10 h-10 bg-navy rounded-lg flex items-center justify-center mb-4" aria-hidden="true">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+                </svg>
+              </div>
+              <h3 class="font-heading text-lg font-bold text-navy mb-2 group-hover:text-maroon transition-colors">Prosecution</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Examine prosecutorial discretion, charging practices, and accountability standards to advance fair and consistent prosecution across Arizona.
+              </p>
+            </div>
+            <div class="mt-4 flex items-center text-navy text-sm font-semibold group-hover:text-maroon transition-colors" aria-hidden="true">
+              Enter workspace
+              <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Sentencing -->
+          <a
+            href="/subcommittee.html?group=Sentencing"
+            class="card group flex flex-col justify-between hover:border-navy transition-all duration-200 no-underline"
+            aria-label="Enter the Sentencing working group workspace"
+          >
+            <div>
+              <div class="w-10 h-10 bg-navy rounded-lg flex items-center justify-center mb-4" aria-hidden="true">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <h3 class="font-heading text-lg font-bold text-navy mb-2 group-hover:text-maroon transition-colors">Sentencing</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Analyze sentencing guidelines, mandatory minimums, and enhancement structures to develop proportionate, evidence-based sentencing reform proposals.
+              </p>
+            </div>
+            <div class="mt-4 flex items-center text-navy text-sm font-semibold group-hover:text-maroon transition-colors" aria-hidden="true">
+              Enter workspace
+              <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Community Supervision -->
+          <a
+            href="/subcommittee.html?group=Community+Supervision"
+            class="card group flex flex-col justify-between hover:border-navy transition-all duration-200 no-underline"
+            aria-label="Enter the Community Supervision working group workspace"
+          >
+            <div>
+              <div class="w-10 h-10 bg-navy rounded-lg flex items-center justify-center mb-4" aria-hidden="true">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
+              </div>
+              <h3 class="font-heading text-lg font-bold text-navy mb-2 group-hover:text-maroon transition-colors">Community Supervision</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Reform probation and parole systems to reduce technical violations, support successful reintegration, and reduce recidivism statewide.
+              </p>
+            </div>
+            <div class="mt-4 flex items-center text-navy text-sm font-semibold group-hover:text-maroon transition-colors" aria-hidden="true">
+              Enter workspace
+              <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Police and Enforcement -->
+          <a
+            href="/subcommittee.html?group=Police+and+Enforcement"
+            class="card group flex flex-col justify-between hover:border-navy transition-all duration-200 no-underline"
+            aria-label="Enter the Police and Enforcement working group workspace"
+          >
+            <div>
+              <div class="w-10 h-10 bg-navy rounded-lg flex items-center justify-center mb-4" aria-hidden="true">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+              </div>
+              <h3 class="font-heading text-lg font-bold text-navy mb-2 group-hover:text-maroon transition-colors">Police and Enforcement</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Address policing standards, use-of-force policy, accountability mechanisms, and the relationship between law enforcement and Arizona communities.
+              </p>
+            </div>
+            <div class="mt-4 flex items-center text-navy text-sm font-semibold group-hover:text-maroon transition-colors" aria-hidden="true">
+              Enter workspace
+              <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Incarceration and Rehabilitation -->
+          <a
+            href="/subcommittee.html?group=Incarceration+and+Rehabilitation"
+            class="card group flex flex-col justify-between hover:border-navy transition-all duration-200 no-underline"
+            aria-label="Enter the Incarceration and Rehabilitation working group workspace"
+          >
+            <div>
+              <div class="w-10 h-10 bg-navy rounded-lg flex items-center justify-center mb-4" aria-hidden="true">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <h3 class="font-heading text-lg font-bold text-navy mb-2 group-hover:text-maroon transition-colors">Incarceration and Rehabilitation</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                Improve conditions and programming for people who are incarcerated, with a focus on education, mental health, reentry support, and humane treatment.
+              </p>
+            </div>
+            <div class="mt-4 flex items-center text-navy text-sm font-semibold group-hover:text-maroon transition-colors" aria-hidden="true">
+              Enter workspace
+              <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- Coalition Context -->
+      <section class="mt-12 bg-white rounded-lg shadow-sm p-6" aria-labelledby="context-heading">
+        <h2 id="context-heading" class="font-heading text-lg font-bold text-navy mb-3">About This Work</h2>
+        <p class="text-sm text-gray-600 leading-relaxed max-w-3xl">
+          The FAIR Group is a bipartisan Arizona coalition led by Representative Powell. These six working groups are developing the evidence-based reform recommendations that will form the coalition's 2027 legislative agenda. Infrastructure is provided by the Praxis Initiative, a 100% system-impacted nonprofit based in Phoenix.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark-gray text-gray-400 py-6 px-4 mt-auto">
+    <div class="max-w-6xl mx-auto text-center text-sm">
+      <p>&copy; 2026 FAIR Group. Infrastructure provided by Praxis Initiative, Phoenix, AZ.</p>
+    </div>
+  </footer>
+
+  <script src="/src/js/nav.js"></script>
+  <script src="/src/js/app.js"></script>
+</body>
+</html>

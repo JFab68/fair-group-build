@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research Library - FAIR Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/dist/style.css">
+  <style>
+    .badge-educational { display:inline-block; padding:0.125rem 0.5rem; border-radius:9999px; font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; background-color:#dbeafe; color:#1e3a8a; }
+    .badge-government { display:inline-block; padding:0.125rem 0.5rem; border-radius:9999px; font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; background-color:#d1fae5; color:#065f46; }
+    .badge-research { display:inline-block; padding:0.125rem 0.5rem; border-radius:9999px; font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; background-color:#e9d5ff; color:#6b21a8; }
+    .badge-advocacy { display:inline-block; padding:0.125rem 0.5rem; border-radius:9999px; font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; background-color:#ffedd5; color:#9a3412; }
+    .badge-model { display:inline-block; padding:0.125rem 0.5rem; border-radius:9999px; font-size:0.65rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; background-color:#fce7f3; color:#9d174d; }
+    .no-scrollbar::-webkit-scrollbar { display:none; }
+    .no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
+    .scroll-mt-32 { scroll-margin-top:8rem; }
+  </style>
+</head>
+<body class="font-body text-dark-gray bg-white" data-page="resources">
+
+  <!-- Navigation -->
+  <nav class="bg-navy shadow-lg" role="navigation" aria-label="Main navigation">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center space-x-4">
+          <a href="/dashboard.html" class="text-white font-heading text-xl font-bold" aria-label="FAIR Group dashboard home">FAIR Group</a>
+          <span class="text-blue-300 hidden sm:block" aria-hidden="true">/</span>
+          <a href="/dashboard.html" class="text-blue-200 hover:text-white text-sm font-medium transition-colors hidden sm:block">Dashboard</a>
+        </div>
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="/dashboard.html" class="nav-link">Dashboard</a>
+          <a href="/profile.html" class="nav-link">Profile</a>
+          <a href="/resources.html" class="nav-link font-medium" aria-current="page">Research Library</a>
+          <a href="/advocacy-toolkit.html" class="nav-link">Advocacy Toolkit</a>
+          <a href="/admin.html" id="admin-link" class="nav-link hidden">Admin</a>
+          <button
+            id="logout-btn"
+            class="btn-secondary text-sm px-4 py-2"
+            aria-label="Sign out of your account"
+        >
+            Sign Out
+          </button>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button
+            id="mobile-menu-btn"
+            class="text-white focus:outline-none focus:ring-2 focus:ring-white rounded p-1"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+        >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-navy border-t border-blue-900">
+      <div class="px-4 py-4 space-y-3">
+        <a href="/dashboard.html" class="block nav-link py-1">Dashboard</a>
+        <a href="/profile.html" class="block nav-link py-1">Profile</a>
+        <a href="/resources.html" class="block nav-link py-1">Research Library</a>
+        <a href="/advocacy-toolkit.html" class="block nav-link py-1">Advocacy Toolkit</a>
+        <a href="/admin.html" class="block nav-link py-1 hidden" id="admin-link-mobile">Admin</a>
+        <button id="logout-btn-mobile" class="block w-full text-left nav-link py-1">Sign Out</button>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Hero Section -->
+  <section class="bg-navy text-white py-20 px-4 ">
+    <div class="max-w-5xl mx-auto text-center">
+      <h1 class="font-heading text-4xl md:text-5xl font-bold mb-6 leading-tight">
+        Research & Resource Library
+      </h1>
+      <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-6 font-light leading-relaxed">
+        A curated collection of statistical reports, government data, research papers, model legislation, advocacy guides, and educational resources for every working group in the FAIR Group coalition.
+      </p>
+      <p class="text-base text-gray-300 max-w-2xl mx-auto font-light">
+        All resources are verified, authoritative, and organized to support the 2027 legislative agenda. Use the category navigation below to jump to your working group's section.
+      </p>
+    </div>
+  </section>
+
+  <!-- Sticky Category Navigation -->
+  <div class="bg-white border-b border-gray-200 sticky top-16 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex overflow-x-auto py-3 gap-2 no-scrollbar" id="category-nav">
+        <a href="#general" class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-navy text-white hover:bg-opacity-90 transition">General Criminal Law</a>
+        <a href="#policing" class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-dark-gray hover:bg-gray-200 transition">Policing</a>
+        <a href="#prosecution" class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-dark-gray hover:bg-gray-200 transition">Prosecution</a>
+        <a href="#criminal-code" class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-dark-gray hover:bg-gray-200 transition">Criminal Code</a>
+        <a href="#sentencing" class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-dark-gray hover:bg-gray-200 transition">Sentencing</a>
+        <a href="#corrections" class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-dark-gray hover:bg-gray-200 transition">Corrections</a>
+        <a href="#community-supervision" class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-dark-gray hover:bg-gray-200 transition">Community Supervision</a>
+        <a href="#arizona-data" class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-maroon text-white hover:bg-opacity-90 transition">Arizona Data</a>
+        <a href="#history" class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-dark-gray hover:bg-gray-200 transition">History</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="py-12 px-4 bg-light-gray">
+    <div class="max-w-6xl mx-auto space-y-16">
+
+      <!-- Filter Bar -->
+      <div class="bg-white rounded-lg shadow-sm p-4 flex flex-wrap items-center gap-3">
+        <span class="text-sm font-semibold text-dark-gray">Filter by type:</span>
+        <button class="filter-btn px-3 py-1 rounded-full text-xs font-medium border border-navy text-navy hover:bg-navy hover:text-white transition active" data-filter="all">All</button>
+        <button class="filter-btn px-3 py-1 rounded-full text-xs font-medium border border-gray-300 text-gray-600 hover:border-navy hover:text-navy transition" data-filter="government">Government Data</button>
+        <button class="filter-btn px-3 py-1 rounded-full text-xs font-medium border border-gray-300 text-gray-600 hover:border-navy hover:text-navy transition" data-filter="research">Research / White Paper</button>
+        <button class="filter-btn px-3 py-1 rounded-full text-xs font-medium border border-gray-300 text-gray-600 hover:border-navy hover:text-navy transition" data-filter="advocacy">Advocacy Guide</button>
+        <button class="filter-btn px-3 py-1 rounded-full text-xs font-medium border border-gray-300 text-gray-600 hover:border-navy hover:text-navy transition" data-filter="educational">Educational</button>
+        <button class="filter-btn px-3 py-1 rounded-full text-xs font-medium border border-gray-300 text-gray-600 hover:border-navy hover:text-navy transition" data-filter="model">Model Legislation</button>
+      </div>
+
+      <!-- GENERAL CRIMINAL LAW & LEGAL PROCESS -->
+      <section id="general" class="scroll-mt-32">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-navy rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <div>
+            <h2 class="font-heading text-3xl text-navy">General Criminal Law & Legal Process</h2>
+            <p class="text-gray-500 text-sm mt-1">Foundational resources on how the criminal legal system works, from arrest through appeal.</p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card resource-card" data-type="educational">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Understanding the Basics of Criminal Law</h3>
+              <span class="badge-educational">Educational</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Comprehensive primer on criminal procedure stages (arrest, preliminary hearings, arraignment, trial), constitutional rights including Sixth Amendment right to counsel, burden of proof, and common legal defenses.</p>
+            <a href="https://online.law.pitt.edu/blog/understanding-the-basics-of-criminal-law" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              University of Pittsburgh Law
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="government">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Arizona Guide to the Court System</h3>
+              <span class="badge-government">Government</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Step-by-step walkthrough of how a criminal case moves through Arizona courts: arrest, initial appearance, preliminary hearing, arraignment, trial, jury instructions, deliberations, verdict, sentencing, and appeals.</p>
+            <a href="https://azcourthelp.org/topics/in-the-courthouse/courtroom-procedures/744-criminal-process" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              AZCourthelp.org
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="government">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">How a Case Moves Through the Court System</h3>
+              <span class="badge-government">Government</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Official Arizona judiciary guide explaining criminal case flows, roles of prosecutors, defense attorneys, judges, and juries. Explains sentencing ranges established by the Legislature and options including probation, fines, imprisonment, and the death penalty.</p>
+            <a href="https://www.azcourts.gov/guidetoazcourts/how-a-case-moves-through-the-court-system" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Arizona Courts
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="educational">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Your Guide to the Arizona Court System</h3>
+              <span class="badge-educational">Educational</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Explains Arizona's court hierarchy from municipal courts (minor crimes, petty offenses, misdemeanors) up through justice of the peace courts, superior court, and the Court of Appeals. Useful for understanding jurisdictional boundaries.</p>
+            <a href="https://criminaldefensetucson.com/arizona-court-system/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Janet Altschuler Defense
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Criminal Deskbook (Fourth Edition)</h3>
+              <span class="badge-research">Research</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">300+ page desk reference covering criminal procedure, alternative satisfaction of fines and costs, payment plans, entry of pleas, and procedural safeguards for defendants unable to pay. Transferable principles for Arizona fines-and-fees reform.</p>
+            <a href="https://docs.gato.txst.edu/690802/Criminal%20Deskbook%20Fourth%20Edition.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Texas Municipal Courts (PDF)
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="educational">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Beginner's Guide to Criminal Law Procedure</h3>
+              <span class="badge-educational">Educational</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Detailed guide covering pretrial proceedings, discovery and Brady obligations, motions practice, plea negotiations, trial phases, jury selection, burden of proof, and sentencing. Defense-side perspective for reformers.</p>
+            <a href="https://ceb.com/blog/california-criminal-law-procedure-and-practice-criminal-defense-legal-procedure-guide/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              CEB (Continuing Education of the Bar)
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- POLICING -->
+      <section id="policing" class="scroll-mt-32">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-navy rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <div>
+            <h2 class="font-heading text-3xl text-navy">Policing Working Group</h2>
+            <p class="text-gray-500 text-sm mt-1">Law enforcement practices, use-of-force standards, accountability frameworks, and community relations.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6 border-l-4 border-navy">
+          <h3 class="font-heading text-lg font-bold text-navy mb-2">Arizona at a Glance</h3>
+          <div class="grid sm:grid-cols-3 gap-4 text-sm">
+            <div><span class="font-semibold text-dark-gray">Phoenix PD #8CantWait:</span> <span class="text-gray-600">7 of 8 policies implemented as of July 2022</span></div>
+            <div><span class="font-semibold text-dark-gray">DOJ Investigation:</span> <span class="text-gray-600">179K documents, 20TB data, 22K bodycam videos produced</span></div>
+            <div><span class="font-semibold text-dark-gray">Tucson PD:</span> <span class="text-gray-600">Pilot for NYU Policing Project SAJE Assessment</span></div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card resource-card" data-type="advocacy">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Campaign Zero - Ten Policy Solutions</h3>
+              <span class="badge-advocacy">Advocacy</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">The seminal police reform platform with ten evidence-based policy areas: end broken windows policing, community oversight, limit use of force, independent investigations, community representation, body cameras (with research caveats), training, end policing for profit, demilitarization, and fair police contracts. Includes model policy language.</p>
+            <a href="https://www.campaignzero.org/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              campaignzero.org
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="advocacy">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">#8CantWait - Immediate Reform Policies</h3>
+              <span class="badge-advocacy">Advocacy</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Eight policies police departments can implement immediately: ban chokeholds, require de-escalation, require warnings before deadly force, exhaust alternatives, duty to intervene, ban shooting at moving vehicles, use-of-force continuum, comprehensive reporting including gun-pointing.</p>
+            <a href="https://8cantwait.org/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              8cantwait.org
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Policing Research Library</h3>
+              <span class="badge-research">Research</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Curated research on arrests, traffic stops, law enforcement interactions, wrongful convictions, use of force, forfeiture, and police misconduct. Includes studies on confirmation bias, network exposure and excessive force, and revenue-raising through forfeiture.</p>
+            <a href="https://www.prisonpolicy.org/research/policing/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Prison Policy Initiative
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="model">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Use of Force Policy Model</h3>
+              <span class="badge-model">Model Policy</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Beta-release model use-of-force policy developed by lawyers, former prosecutors, and experts synthesizing best practices from departments nationwide. Arizona-specific application potential.</p>
+            <a href="https://ele4a.org/resources-links/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Stanford Center for Racial Justice
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="government">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Federal Interventions Dashboard</h3>
+              <span class="badge-government">Government</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Tracks civil consent decrees and settlements between DOJ and local/state policing entities. Provides location maps, timelines, and descriptions of federal interventions in comparable jurisdictions.</p>
+            <a href="https://ele4a.org/resources-links/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              DOJ & National Policing Institute
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">NYU Policing Project - SAJE Assessment</h3>
+              <span class="badge-research">Research</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">New tool defining, measuring, and standardizing characteristics of better policing across 100 metrics in four categories: Sound, Accountable, Just, and Effective. Pilot department: Tucson, AZ Police Department.</p>
+            <a href="https://ele4a.org/resources-links/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              NYU Policing Project
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="educational">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">ABLE Project - Active Bystandership for Law Enforcement</h3>
+              <span class="badge-educational">Training</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">National hub for training and technical assistance fostering peer intervention among officers. Training comes at no cost. Relevant for Arizona departments seeking to build accountability cultures.</p>
+            <a href="https://ele4a.org/resources-links/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Georgetown Law / ABLE
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="government">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Phoenix Police Transparency & Accountability Portal</h3>
+              <span class="badge-government">Government</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Interactive dashboards covering arrests, citations, calls for service, crime maps, officer-involved shooting data, response to resistance (use of force), uniform crime reporting, and body-worn camera program. Raw data available for download.</p>
+            <a href="https://www.phoenix.gov/administration/departments/police/crime-stats-data/transparency.html" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              City of Phoenix
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="government">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Phoenix PD Use of Force Dashboard</h3>
+              <span class="badge-government">Data</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Use of Force incident and demographic charts (2018-February 2025) with full dataset on the city's Open Data Portal. Includes separate dashboards for Officer-Involved Shootings and Officer Pointed Gun at Person.</p>
+            <a href="https://stories.opengov.com/phoenixaz/published/6EtqlY5qQ" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Phoenix OpenGov
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Phoenix PD: Road to Reform (January 2024)</h3>
+              <span class="badge-research">Report</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">200+ page report documenting reforms: revised UOF policy with three levels, duty to intervene, body-worn camera deployment (2022), Critical Incident Transparency Protocol, CompStat adoption (August 2023), Community Advisory Board Summit.</p>
+            <a href="https://www.phoenix.gov/content/dam/phoenix/policesite/documents/doj/PPD_RoadtoReform_January2024.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Phoenix PD (PDF)
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="government">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Phoenix Open Data - Officer Use of Force Dataset</h3>
+              <span class="badge-government">Raw Data</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Use of Force incidents from January 2018 through February 17, 2025. Includes demographic information for officers and individuals. All incidents have gone through review and are finalized. Updated following Operations Order 1.5 release.</p>
+            <a href="https://www.phoenixopendata.com/dataset/ouof" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Phoenix Open Data Portal
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROSECUTION -->
+      <section id="prosecution" class="scroll-mt-32">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-navy rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+          </div>
+          <div>
+            <h2 class="font-heading text-3xl text-navy">Prosecution Working Group</h2>
+            <p class="text-gray-500 text-sm mt-1">Charging practices, prosecutorial discretion, plea negotiation standards, and accountability mechanisms.</p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card resource-card" data-type="model">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Prosecutorial Transparency Act - Model Legislation</h3>
+              <span class="badge-model">Model Bill</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Ready-to-adapt model legislation requiring prosecutors to collect and report: demographics of charged individuals, charge descriptions, initial/modified charges, bail type/amount, plea offers, pretrial detention dates, case disposition, and sentence details. Requires written policies on bail, sentencing, plea bargaining, discovery, and diversion. Includes community advisory board.</p>
+            <a href="https://www.aclu.org/sites/default/files/field_document/aclu_smart_justice_prosecutor_transparency_report.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              ACLU Smart Justice (PDF)
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Advancing the Use of Data in Prosecution</h3>
+              <span class="badge-research">White Paper</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">October 2023 white paper on data use in prosecutor offices. Covers external transparency (building trust, showcasing policy successes) and internal management. Discusses metrics for deflections, diversions, racial/ethnic demographics, and prison sentence lengths.</p>
+            <a href="https://fairandjustprosecution.org/wp-content/uploads/2023/10/FJP-Data-Innovations-White-Paper-Oct-2023.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Fair and Just Prosecution (PDF)
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="government">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Maricopa County Attorney Data Dashboard</h3>
+              <span class="badge-government">Data</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Public-facing dashboard showing total cases referred to MCAO over past three years, case outcomes, and prosecution metrics. Praised as a "first step" by advocates but noted as needing more detailed information on dispositions and sentence outcomes.</p>
+            <a href="https://maricopacountyattorney.org/419/Data-Dashboard" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Maricopa County Attorney
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="advocacy">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">National Police Accountability Project Resources</h3>
+              <span class="badge-advocacy">Legal</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Resources including: "Choosing Resistance" guide for local action; Qualified Immunity Fact Sheet (court-created doctrine shielding officers from civil accountability); Absolute Immunity for Prosecutors Fact Sheet (prosecutors shielded from civil lawsuits for misconduct including withholding evidence of innocence).</p>
+            <a href="https://nationalpoliceaccountability.org/resources-for-police-accountability/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              NPAP
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="educational">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Absolute Immunity for Prosecutors Fact Sheet</h3>
+              <span class="badge-educational">Legal Ed</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Explains how absolute immunity shields prosecutors from civil lawsuits for misconduct tied to their courtroom role—even when intentionally violating constitutional rights, withholding exculpatory evidence, or fabricating evidence. Outlines needed policy reforms.</p>
+            <a href="https://nationalpoliceaccountability.org/resources-for-police-accountability/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              NPAP
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CRIMINAL CODE -->
+      <section id="criminal-code" class="scroll-mt-32">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-navy rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <div>
+            <h2 class="font-heading text-3xl text-navy">Criminal Code Working Group</h2>
+            <p class="text-gray-500 text-sm mt-1">Arizona's statutory criminal code, offense classifications, model penal codes, and recodification resources.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6 border-l-4 border-navy">
+          <h3 class="font-heading text-lg font-bold text-navy mb-2">Arizona Criminal Code at a Glance</h3>
+          <div class="grid sm:grid-cols-3 gap-4 text-sm">
+            <div><span class="font-semibold text-dark-gray">Six Felony Classes:</span> <span class="text-gray-600">Class 1 (murder) through Class 6 (reducible to misdemeanor)</span></div>
+            <div><span class="font-semibold text-dark-gray">2025 Updates:</span> <span class="text-gray-600">Child sex trafficking mandatory life; DV pregnancy enhancement; fines up to $1M for enterprises</span></div>
+            <div><span class="font-semibold text-dark-gray">Model Resource:</span> <span class="text-gray-600">ALI Model Penal Code for Criminal Sentencing (2017) with prison-diversion and second-look provisions</span></div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card resource-card" data-type="government">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Arizona Revised Statutes - Title 13 (Criminal Code)</h3>
+              <span class="badge-government">Primary Law</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Official Arizona criminal code including: Chapter 5 (Responsibility/insanity), Chapter 6 (Classification of Offenses), Chapter 7 (Sentencing and Imprisonment), Chapter 7.1 (Capital Sentencing). Key statutes: 13-601 (classification), 13-702 (first-time offenders), 13-703 (repetitive offenders), 13-704 (dangerous offenders), 13-705 (dangerous crimes against children).</p>
+            <a href="https://www.azleg.gov/arsDetail/?title=13" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Arizona State Legislature
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Arizona Felony Sentencing Chart 2026</h3>
+              <span class="badge-research">Reference</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Comprehensive felony sentencing chart for Class 2 through Class 6 felonies covering non-dangerous offenses, non-dangerous repetitive offenses (Category 1/2/3 repeat offenders), and dangerous repetitive offenses. Explains mitigated, minimum, presumptive, maximum, and aggravated sentences.</p>
+            <a href="https://www.feldmanroyle.com/resources/arizona-sentencing-chart/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Feldman Royle Ahl
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="government">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Criminal Code Sentencing Provisions 2025-2026</h3>
+              <span class="badge-government">Government</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Official Arizona judiciary sentencing charts. The most updated version of ranges and associated penalties effective through 2026. Includes lifetime probation provisions, sexual assault sentencing under A.R.S. § 13-1406, and community restitution alternatives to financial penalties.</p>
+            <a href="https://www.azcourts.gov/Portals/0/0/Criminal%20Sentencing%20Charts/2025-2026.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Arizona Courts (PDF)
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="educational">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Arizona Felony Classifications and Penalties</h3>
+              <span class="badge-educational">Educational</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Clear explanation of Arizona's six felony classes with presumptive sentences: Class 2 = 5 years; Class 3 = 3.5 years; Class 4 = 2.5 years; Class 5 = 2 years; Class 6 = 1 year. Explains aggravating and mitigating factors and charge reduction options.</p>
+            <a href="https://www.phoenixcrimeattorneys.com/felonies/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Phoenix Crime Attorneys
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="educational">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Class 1 to 6 Felonies Explained</h3>
+              <span class="badge-educational">Educational</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Detailed breakdown of each felony class with examples, sentencing ranges, and consequences. Covers Class 6 charge reduction under A.R.S. 13-604, alternative sentencing (probation, deferred sentencing, diversion, treatment), and long-term consequences including civil rights and housing impacts.</p>
+            <a href="https://queencreeklawfirm.com/blog/class-1-to-6-felonies-explained/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Queen Creek Law
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="model">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Model Penal Code: Sentencing - Workable Limits on Mass Punishment</h3>
+              <span class="badge-model">Model Law</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">The ALI's Model Penal Code for Criminal Sentencing (MPCS) approved in 2017. Includes recommendations for: prison-diversion programs for low-risk defendants; exemptions from mandatory minimums for juveniles tried as adults; "extraordinary departure power" for courts; judicial "second look" at sentences after 15 years; power to override collateral consequences.</p>
+            <a href="https://robinainstitute.umn.edu/articles/new-model-penal-code-criminal-sentencing-approved-american-law-institute-comprehensive" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              American Law Institute / Robina Institute
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">MPCS - Workable Limits on Mass Incarceration</h3>
+              <span class="badge-research">Academic</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Scholarly analysis of the MPCS approach to limiting mass incarceration. Discusses postrelease supervision limitations (no longer than 5 years for felonies, 1 year for misdemeanors), conditions that cannot place "unreasonable burden" on reintegration, and judicial reexamination after 15 years.</p>
+            <a href="https://thealiadviser.org/wp-content/uploads/2019/06/Reitz-Klingele-MPCS-Workable-Limits-CandJ-2019.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              The ALI Adviser (PDF)
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SENTENCING -->
+      <section id="sentencing" class="scroll-mt-32">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-navy rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h2 class="font-heading text-3xl text-navy">Sentencing Working Group</h2>
+            <p class="text-gray-500 text-sm mt-1">Mandatory minimums, truth-in-sentencing, enhancements, disparities, and evidence-based reform.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6 border-l-4 border-maroon">
+          <h3 class="font-heading text-lg font-bold text-navy mb-2">Arizona Sentencing at a Glance</h3>
+          <div class="grid sm:grid-cols-3 gap-4 text-sm">
+            <div><span class="font-semibold text-dark-gray">5th Highest Rate:</span> <span class="text-gray-600">Arizona has the 5th highest incarceration rate in the US</span></div>
+            <div><span class="font-semibold text-dark-gray">85% Rule:</span> <span class="text-gray-600">One of few states requiring almost all prisoners to serve 85% before release eligibility</span></div>
+            <div><span class="font-semibold text-dark-gray">HB 2720 Win:</span> <span class="text-gray-600">2025 unanimous bipartisan bill ended crack-cocaine sentencing disparity</span></div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Reforming Sentencing Policies in Arizona</h3>
+              <span class="badge-research">Research</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Landmark 2022 ASU article by Cassia Spohn. Identifies four key drivers of Arizona's high incarceration rate: Proposition 301 (prison for drug possession), repetitive offender enhancements, habitual offender provisions (life without parole), and 85% truth-in-sentencing. Recommendations include reducing mandatory enhancements and repealing Prop 301 for possession.</p>
+            <a href="https://academyforjustice.asu.edu/resource/reforming-sentencing-policies-and-practices-in-arizona/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              ASU Academy for Justice
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="advocacy">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">FAMM Arizona Fact Sheet</h3>
+              <span class="badge-advocacy">Fact Sheet</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Key Arizona statistics: 4th highest incarceration rate; $1.1 billion annual corrections spending; 42,000+ incarcerated; 26% nonviolent; 21% drug offenders. Documents FAMM's advocacy for SB 1334 (repetitive offender reform, vetoed by Gov. Ducey).</p>
+            <a href="https://famm.org/wp-content/uploads/2020/01/FactSheet-memos_Arizona.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              FAMM (PDF)
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">FAMM Bill Summary: Just Sentencing Act HB 2270</h3>
+              <span class="badge-research">Legislative Analysis</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Summary of Arizona's Just Sentencing Act (HB 2270, Blackman). Addresses Arizona's mandatory minimums and repetitive offender sentencing enhancements. Useful model for understanding sentencing reform legislation structure.</p>
+            <a href="https://famm.org/wp-content/uploads/HB2270-Bill-Summary.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              FAMM (PDF)
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="advocacy">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">HB 2720: Ending Crack-Cocaine Disparity (2025)</h3>
+              <span class="badge-advocacy">Success Story</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Arizona's HB 2720 (2025) ended the crack-cocaine sentencing disparity. Passed unanimously and signed by Gov. Hobbs. Sponsored by Rep. Leo Biasiucci (R). Arizona became the 46th state to address crack/powder disparities. Demonstrates bipartisan sentencing reform success.</p>
+            <a href="https://www.arnoldventures.org/stories/lawmakers-preserve-public-safety-while-reducing-long-prison-sentences" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Arnold Ventures
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Re-Punished for the Past</h3>
+              <span class="badge-research">Report</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">2026 Sentencing Project report on how criminal records increase prison terms and racial injustice. Criminal records account for major portions of lengthy sentences (63% Maryland, 30% Minnesota, 45% Pennsylvania, 41% Washington). For drug and property crimes in Maryland with records, 97% and 93% of lengthy sentence duration attributable to criminal record rather than current conviction.</p>
+            <a href="https://www.sentencingproject.org/reports/re-punished-for-the-past-how-criminal-records-increase-prison-terms-and-racial-injustice/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              The Sentencing Project
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Comparative Study of Sentencing Law and Policy</h3>
+              <span class="badge-research">Academic</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">2025 article exploring comparative sentencing reform across states. Discusses state "laboratories" of reform, Minnesota's sentencing guidelines commission model, and credit-based release systems. Identifies only six states with generous mandatory release dates based on good-time credits.</p>
+            <a href="https://link.springer.com/article/10.1007/s10609-025-09502-9" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Springer / Criminal Law and Philosophy
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="government">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">National Corrections Reporting Program (NCRP)</h3>
+              <span class="badge-government">Data</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">BJS collection of individual-level records on prison admissions and releases including sentence length, time served, offense, demographic characteristics, and parole status. Essential for comparing Arizona sentence lengths and time-served patterns to national norms.</p>
+            <a href="https://bjs.ojp.gov/data-collections/ncrp" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Bureau of Justice Statistics
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CORRECTIONS & REHABILITATION -->
+      <section id="corrections" class="scroll-mt-32">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-maroon rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <div>
+            <h2 class="font-heading text-3xl text-navy">Corrections & Rehabilitation</h2>
+            <p class="text-gray-500 text-sm mt-1">Conditions inside Arizona correctional facilities, access to programming, recidivism data, and reentry resources.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6 border-l-4 border-maroon">
+          <h3 class="font-heading text-lg font-bold text-navy mb-2">Arizona Corrections at a Glance</h3>
+          <div class="grid sm:grid-cols-3 gap-4 text-sm">
+            <div><span class="font-semibold text-dark-gray">Population (Sept 2025):</span> <span class="text-gray-600">35,302 incarcerated + 5,617 community supervision = 40,919 total</span></div>
+            <div><span class="font-semibold text-dark-gray">Recidivism (FY2024):</span> <span class="text-gray-600">20.7% returned within one year (18.3% technical violations, 2.4% new felonies)</span></div>
+            <div><span class="font-semibold text-dark-gray">Rehabilitation Budget:</span> <span class="text-gray-600">Less than 2% of $1.2B ADCRR budget goes to counseling, education, reentry</span></div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card resource-card" data-type="government">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">ADCRR Monthly Data Reports</h3>
+              <span class="badge-government">Government</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Official monthly statistical snapshots from Arizona Department of Corrections. Includes total prison population, demographics by facility/age/ethnicity, admissions by type (new commitments, probation revocations, supervision violators), releases, operating capacity, restrictive housing stats, health services, community reentry metrics, and work program hours.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <a href="https://corrections.az.gov/sites/default/files/documents/reports/MonthlyDataReport/ADCRR%20MDR%20-%20SEPTEMBER%202025_FINAL.pdf" target="_blank" rel="noopener" class="text-xs font-medium text-navy bg-blue-50 px-2 py-1 rounded hover:bg-blue-100 transition">Sept 2025 (PDF)</a>
+              <a href="https://corrections.az.gov/sites/default/files/documents/reports/MonthlyDataReport/ADCRR%20MDR%20-%20AUGUST%202025_FINAL2.pdf" target="_blank" rel="noopener" class="text-xs font-medium text-navy bg-blue-50 px-2 py-1 rounded hover:bg-blue-100 transition">Aug 2025 (PDF)</a>
+              <a href="https://corrections.az.gov/sites/default/files/documents/reports/MonthlyDataReport/ADCRR%20MDR%20-%20DECEMBER%202025_FINAL.pdf" target="_blank" rel="noopener" class="text-xs font-medium text-navy bg-blue-50 px-2 py-1 rounded hover:bg-blue-100 transition">Dec 2025 (PDF)</a>
+            </div>
+            <a href="https://corrections.az.gov/research-statistics" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              ADCRR Research & Statistics Portal
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="government">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">ADCRR FY 2025 Return to Incarceration Report</h3>
+              <span class="badge-government">Report</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">10-year recidivism analysis. FY 2024 releases: 20.7% returned within one year. Three-year return rate: 31.8% (FY 2022). Notes women had lower return rates than men; technical violations increasing post-COVID toward pre-2020 levels.</p>
+            <a href="https://corrections.az.gov/sites/default/files/documents/reports/ReturnToIncarceration/FY%202025_One%20Year%20-%20Return%20to%20Incarceration%20Report.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              ADCRR (PDF)
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="government">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">FY 2020 Operating Per Capita Cost Report</h3>
+              <span class="badge-government">Financial</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Detailed per-diem and annual operating costs by facility, custody level, function, and object. Average annual cost per incarcerated person: $27,800 (2020). Includes expenditure detail by function (security, health services, programs, administration) and by object (personnel, operating expenses).</p>
+            <a href="https://corrections.az.gov/sites/default/files/documents/reports/adcrr-percapcostreport_fy2020-final.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              ADCRR (PDF)
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Arizona Criminal Justice Reform: Savings & Economic Impact</h3>
+              <span class="badge-research">Economic Analysis</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Comprehensive 2023 fiscal impact analysis from Rounds Consulting/FWD.us. Three scenarios modeled over 10 years. Most likely: $1.4 billion in prison savings + $107 million in tax revenues = $1.5 billion total fiscal benefit. Annual savings reach $200M by year 10.</p>
+            <a href="https://roundsconsulting.com/wp-content/uploads/2023/05/AZ-Criminal-Justice-Reform-1.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Rounds Consulting / FWD.us (PDF)
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">The High Price of Prison Growth</h3>
+              <span class="badge-research">Report</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">FWD.us analysis: Arizona has 4th highest imprisonment rate in the US. 1 in 13 Arizonans (357,000 people) has a current or prior felony conviction. Corrections spending increased $280 million since 2000; FY 2019 budget exceeded $1 billion. 32 states reduced both crime and imprisonment in the past decade—Arizona was not among them.</p>
+            <a href="https://www.fwd.us/wp-content/uploads/2018/09/The-High-Price-of-Prison-Growth.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              FWD.us (PDF)
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Arizona's Mass Incarceration</h3>
+              <span class="badge-research">Policy Report</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">ASU Morrison Institute analysis. Arizona DOC budget ~$1 billion annually (11% of state budget, FY2016). Maricopa County jails: average daily population 8,314; 100,000+ cycle through annually. Jail budget increased 87% from 2004-2015. Private prisons account for 15% of Arizona prison population.</p>
+            <a href="https://morrisoninstitute.asu.edu/sites/g/files/litvpz841/files/arizonas_mass_incarceration_0.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              ASU Morrison Institute (PDF)
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="advocacy">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">ADCRR Spending Issues - Budget Analysis</h3>
+              <span class="badge-advocacy">Advocacy</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Critical analysis from Just Communities Arizona. ADCRR has 3rd largest state agency budget; spending increased fivefold since 1990. Rehabilitation makes up less than 2% of $1.2B budget. Security makes up 45.8%. Recidivism ~50%; just 2% receiving substance abuse treatment. Documents infrastructure failures including malfunctioning door locks since 2017 and inoperable fire alarms for over a decade.</p>
+            <a href="https://justcommunitiesarizona.org/wp-content/uploads/2022/02/2021-Budget-Stop-Giving-ADCRR-More-Money.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Just Communities Arizona (PDF)
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="educational">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">National Institute of Corrections (NIC) Resources</h3>
+              <span class="badge-educational">Training</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Federal resource center providing training and publications on corrections administration: prison and jail administration, restrictive housing management, suicide prevention, "Thinking for a Change" cognitive behavioral program, victim services, and reentry. Offers e-courses and in-person training.</p>
+            <a href="https://nicic.gov/resources" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              NIC.gov
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Resource Guide for Jail Administrators</h3>
+              <span class="badge-research">Reference</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">300+ page comprehensive desk reference for jail administrators. Covers administration, facilities, staffing, training, inmate behavior management, programs, health care, food service, sanitation, safety, security, legal issues, and community relations. Applicable to understanding county jail conditions and operations.</p>
+            <a href="https://s3.amazonaws.com/static.nicic.gov/Library/020030.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              NIC (PDF)
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="educational">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">National Reentry Resource Center Directory</h3>
+              <span class="badge-educational">Directory</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Directory of local reentry services to help incarcerated individuals and families find housing, employment, family reunification, and treatment services. Includes state-by-state listings and evidence-based practice guides.</p>
+            <a href="https://www.nationalreentryresourcecenter.org/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              NRRC
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="educational">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Re-Entry Programs for Ex-Offenders in Arizona</h3>
+              <span class="badge-educational">Directory</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Comprehensive listing of Arizona reentry resources: 211 Arizona, Old Pueblo Community Services, Hope's Crossing, AWEE, Goodwill Arizona, JobPath, Family Service Agency, and more. Includes housing, employment, education, and substance abuse counseling services statewide.</p>
+            <a href="https://www.recordgone.com/articles/re-entry-programs-and-resources-for-ex-offenders-arizona.htm" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              RecordGone
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="educational">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">ACLU Arizona - Formerly Incarcerated Resources</h3>
+              <span class="badge-educational">Directory</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Links to Arizona reentry services including Mercy Maricopa Integrated Care, Yavapai Reentry Project, Arizona OIC, JobPath, Old Pueblo Community Services, Primavera Foundation, and Catholic Charities Kolbe Society mentor program in Tucson.</p>
+            <a href="https://www.acluaz.org/formerly-incarcerated/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              ACLU of Arizona
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMMUNITY SUPERVISION -->
+      <section id="community-supervision" class="scroll-mt-32">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-maroon rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          </div>
+          <div>
+            <h2 class="font-heading text-3xl text-navy">Community Supervision Working Group</h2>
+            <p class="text-gray-500 text-sm mt-1">Probation and parole conditions, technical violation responses, and reentry support.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6 border-l-4 border-maroon">
+          <h3 class="font-heading text-lg font-bold text-navy mb-2">Arizona Community Supervision at a Glance</h3>
+          <div class="grid sm:grid-cols-3 gap-4 text-sm">
+            <div><span class="font-semibold text-dark-gray">No Parole Since 1994:</span> <span class="text-gray-600">Arizona eliminated parole; post-1994 sentences result in "community supervision" equal to ~1/7th of imposed sentence</span></div>
+            <div><span class="font-semibold text-dark-gray">Technical Violations:</span> <span class="text-gray-600">96% of supervision violation admissions are technical (not new crimes)</span></div>
+            <div><span class="font-semibold text-dark-gray">SB 1310 (2019):</span> <span class="text-gray-600">Allowed drug possession offenders to serve 70% instead of 85% before release</span></div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Reducing Community Supervision Absconding in Arizona</h3>
+              <span class="badge-research">Research</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">2025 ASU report. Key finding: mandatory parole orientations implemented in 2019 at Mesa Regional Parole Office reduced absconder warrants from 48-58/month to 4-7/month. Northeastern Maricopa: absconding rate 7.64% for those attending orientation vs. 23.55% for non-attendees.</p>
+            <a href="https://ccj.asu.edu/sites/g/files/litvpz171/files/2025-10/Reducing%20Community%20Supervision%20Absconding%20in%20Arizona%20%281%29%20%281%29.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              ASU Center for Correctional Solutions (PDF)
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="educational">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Community Supervision / Probation / Parole Explainer</h3>
+              <span class="badge-educational">Educational</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Detailed explanation of Arizona's unique post-prison supervision system. Parole was eliminated effective 1/1/94. Explains earned release credits at 85.7% mark, SB 1310 (2019) allowing drug possession offenders to serve 70% instead of 85%, and distinctions between pre- and post-1994 sentencing structures.</p>
+            <a href="https://www.middlegroundprisonreform.org/resources/community-supervision-probation.html" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Middle Ground Prison Reform
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Arizona Criminal Justice Data Snapshot</h3>
+              <span class="badge-research">Data</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Comprehensive data profile from Justice Reinvestment Initiative: 36% of people exiting prison in 2017 reincarcerated within 3 years; Arizona had 15th-lowest parole supervision rate in 2021; successful parole completion increased from 53% (2011) to 72% (2021); 76% of collateral consequences in Arizona are employment-related.</p>
+            <a href="https://justicereinvestmentinitiative.org/wp-content/uploads/2024/01/Arizona-Criminal-Justice-Data-Snapshot_accessible.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Justice Reinvestment Initiative (PDF)
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Supervision Violations and Their Impact on Incarceration</h3>
+              <span class="badge-research">National Report</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">2024 CSG Justice Center report based on 4 years of data from all 50 states. 44% of all state prison admissions in 2021 were for probation/parole violations. 1 in 4 people in state prison on any given day in 2021 were incarcerated for supervision violations. Arizona-specific data included in state breakdowns.</p>
+            <a href="https://projects.csgjusticecenter.org/supervision-violations-impact-on-incarceration/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              CSG Justice Center
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Policy Reforms Can Strengthen Community Supervision</h3>
+              <span class="badge-research">Policy</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">2020 Pew report on evidence-based supervision reforms. Recommends: adopt performance measures tracking staff-client engagement, compliance with conditions, use of incentives, technical violations and sanctions, revocation petitions, and positive goal-based behaviors (employment, housing, programming completion).</p>
+            <a href="https://www.pew.org/en/research-and-analysis/reports/2020/04/policy-reforms-can-strengthen-community-supervision" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Pew Charitable Trusts
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="government">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Justice Data Snapshots - Community and Behavioral Health</h3>
+              <span class="badge-government">Interactive Data</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">National and state-level data on probation and parole populations, supervision success rates, admissions for violations, and racial disparities. US probation rate: 921 per 100,000 (2023). US parole rate: 202 per 100,000 (2023). 53% of probation violation admissions are technical; 59% of parole violation admissions are technical.</p>
+            <a href="https://projects.csgjusticecenter.org/justice-data-snapshots/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              CSG Justice Center
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ARIZONA DATA & COMPARATIVE ANALYSIS -->
+      <section id="arizona-data" class="scroll-mt-32">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-maroon rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+          <div>
+            <h2 class="font-heading text-3xl text-navy">Arizona Data & Economic Impact</h2>
+            <p class="text-gray-500 text-sm mt-1">State-specific statistics, comparative national analysis, and the fiscal case for reform.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6 border-l-4 border-maroon">
+          <h3 class="font-heading text-lg font-bold text-navy mb-4">Arizona in Context</h3>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+            <div class="bg-light-gray rounded-lg p-4">
+              <div class="text-3xl font-bold text-maroon">7th</div>
+              <div class="text-sm text-gray-600 mt-1">Highest incarceration rate nationally (540 per 100,000)</div>
+            </div>
+            <div class="bg-light-gray rounded-lg p-4">
+              <div class="text-3xl font-bold text-maroon">52,000+</div>
+              <div class="text-sm text-gray-600 mt-1">People behind bars in Arizona prisons and jails</div>
+            </div>
+            <div class="bg-light-gray rounded-lg p-4">
+              <div class="text-3xl font-bold text-maroon">$1.2B</div>
+              <div class="text-sm text-gray-600 mt-1">Annual corrections spending (3rd largest state agency budget)</div>
+            </div>
+            <div class="bg-light-gray rounded-lg p-4">
+              <div class="text-3xl font-bold text-maroon">1 in 13</div>
+              <div class="text-sm text-gray-600 mt-1">Arizonans with a current or prior felony conviction</div>
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-center mt-4">
+            <div class="bg-light-gray rounded-lg p-4">
+              <div class="text-3xl font-bold text-navy">4.9x</div>
+              <div class="text-sm text-gray-600 mt-1">Black incarceration rate vs. white rate in Arizona</div>
+            </div>
+            <div class="bg-light-gray rounded-lg p-4">
+              <div class="text-3xl font-bold text-navy">80%</div>
+              <div class="text-sm text-gray-600 mt-1">Of jail inmates have not been convicted (awaiting trial)</div>
+            </div>
+            <div class="bg-light-gray rounded-lg p-4">
+              <div class="text-3xl font-bold text-navy">$27,800</div>
+              <div class="text-sm text-gray-600 mt-1">Average annual cost per incarcerated person (2020)</div>
+            </div>
+            <div class="bg-light-gray rounded-lg p-4">
+              <div class="text-3xl font-bold text-navy">$1.5B</div>
+              <div class="text-sm text-gray-600 mt-1">Potential 10-year fiscal benefit from earned release reform</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Prison Policy Initiative - Arizona Profile</h3>
+              <span class="badge-research">State Profile</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Comprehensive Arizona incarceration profile with data visualization. Key stats: 710 per 100,000 incarceration rate; 52,000+ people behind bars; 117,000+ cycle through local jails annually; 80% of jail inmates not convicted; Black people incarcerated at 4.9x the white rate; 11% of prison population over age 55; 82,035 on probation/parole.</p>
+            <a href="https://www.prisonpolicy.org/profiles/AZ.html" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Prison Policy Initiative
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Arizona Incarceration Pie Chart 2026</h3>
+              <span class="badge-research">Visualization</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Visual breakdown showing 52,220 Arizona residents locked up in federal prisons, state prisons, local jails, and other facilities. Part of "Punishment beyond prisons: Incarceration and supervision by state" series.</p>
+            <a href="https://www.prisonpolicy.org/graphs/correctional_control2026/AZ_incarceration.html" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Prison Policy Initiative
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Arizona Prison & Jail Rates, 1978-2022</h3>
+              <span class="badge-research">Historical Data</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Graph showing dramatic growth in Arizona's prison and jail incarceration rates over 44 years. Contextualizes Arizona's trajectory within national trends. Essential for understanding how Arizona reached its current position.</p>
+            <a href="https://www.prisonpolicy.org/graphs/jails2024/AZ_incarceration_rates_1978-2022.html" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Prison Policy Initiative
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Mass Incarceration: The Whole Pie 2025</h3>
+              <span class="badge-research">National Report</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Comprehensive national report with Arizona-relevant context: 4 in 5 people in prison/jail are locked up for something other than drug offenses; 1 in 3 people behind bars is in jail awaiting trial; almost 1 in 5 people in jail are there for probation/parole violations; 8% of confined people are in private prisons.</p>
+            <a href="https://www.prisonpolicy.org/reports/pie2025.html" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Prison Policy Initiative
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Incarceration Rate by State 2026</h3>
+              <span class="badge-research">Comparison</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Current state rankings. Arizona ranked 7th highest nationally at 540 per 100,000 in 2026. Nearby comparisons: Kentucky 565, Texas 530, Missouri 505. Useful for benchmarking Arizona against neighbors and understanding relative standing.</p>
+            <a href="https://www.statspanda.com/incarceration-rate-by-state" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              StatsPanda
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="government">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">FBI NIBRS - Arizona Agency Data</h3>
+              <span class="badge-government">Crime Data</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Incident-based crime data from Arizona law enforcement agencies participating in NIBRS. Captures detailed data on 52 offenses including circumstances, victim/offender demographics, weapons, locations, and arrestee information. More detailed than traditional UCR.</p>
+            <a href="https://le.fbi.gov/informational-tools/ucr/nibrs-resources" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              FBI Crime Data Explorer
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="government">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Bureau of Justice Statistics - Arizona Data</h3>
+              <span class="badge-government">Federal Stats</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Primary federal source for criminal justice statistics. Collections relevant to Arizona: National Crime Victimization Survey (NCVS), National Prisoner Statistics, Annual Survey of Jails, Census of State and Federal Adult Correctional Facilities, Survey of Prison Inmates, National Corrections Reporting Program (NCRP).</p>
+            <a href="https://bjs.ojp.gov/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              BJS.ojp.gov
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="research">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Cost-Saving or Cost-Shifting: Private Prisons in Arizona</h3>
+              <span class="badge-research">Economic Analysis</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Prison Policy Initiative analysis of Arizona's prison privatization claims. Found evidence of cost savings "virtually nonexistent." Private prison contracts drove up direct costs by estimated 23% ($3 million/year additional). Calls for full audit before relying on privatization claims.</p>
+            <a href="https://www.prisonpolicy.org/scans/AZ_PP_Rpt_v4.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Prison Policy Initiative (PDF)
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- HISTORY -->
+      <section id="history" class="scroll-mt-32">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 bg-navy rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h2 class="font-heading text-3xl text-navy">History of Criminal Law & Prisons in the United States</h2>
+            <p class="text-gray-500 text-sm mt-1">Understanding the origins and evolution of the American criminal justice system.</p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="card resource-card" data-type="educational">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">History of Corrections in America</h3>
+              <span class="badge-educational">Timeline</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Timeline of major developments in American corrections from 1891 to 2018: Three Prisons Act (1891), Bureau of Prisons established (1930), Attica Prison Riot (1971), NIC founded (1974), Comprehensive Crime Control Act (1984 - eliminated federal parole, instituted mandatory minimums), 1994 Crime Bill (Truth-in-Sentencing), First Step Act (2018).</p>
+            <a href="https://nicic.gov/resources/nic-library/corrections-trends/history-corrections-in-america" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              National Institute of Corrections
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="educational">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">Early History of Punishment and Prisons in the U.S.</h3>
+              <span class="badge-educational">Academic Text</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Comprehensive chapter covering: William Penn's Great Law (1682) and its overturn in 1718; European penal reformers (Montesquieu, Voltaire, Beccaria, Howard, Bentham); Old Newgate Prison in Connecticut (1773) as first official U.S. prison; Walnut Street Jail and the birth of Pennsylvania/Auburn models; shift from punishment to rehabilitation ideals.</p>
+            <a href="https://us.sagepub.com/sites/default/files/upm-binaries/97948_Chapter_1_Early_History_of_Punishment_and_the_Development_of_Prisons_in_the_United_States.pdf" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              SAGE Publishing (PDF)
+            </a>
+          </div>
+
+          <div class="card resource-card" data-type="educational">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-heading text-lg font-bold text-navy leading-tight">History of the United States Prison System</h3>
+              <span class="badge-educational">Interactive</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3 leading-relaxed">Visual timeline of U.S. prison history: 1720 Old York Gaol (oldest prison); 1789 Correctional Education Movement begins at Walnut Street Jail; 1825 New York House of Refuge (first juvenile prison); 1860 Reconstruction Era reform; 1865 Thirteenth Amendment and the rise of convict leasing.</p>
+            <a href="https://educationandrecidivism.humspace.ucla.edu/196-2/timeline-2-0/" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-medium text-navy hover:text-maroon transition">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              UCLA Humanities
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- National Data Sources -->
+      <section class="scroll-mt-32">
+        <div class="bg-navy rounded-lg p-8 text-white">
+          <h2 class="font-heading text-2xl font-bold mb-4">National Data Sources & Statistical Repositories</h2>
+          <p class="text-gray-200 mb-6">Bookmark these portals for ongoing research across all working groups.</p>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <a href="https://bjs.ojp.gov/data-collections/search" target="_blank" rel="noopener" class="bg-white bg-opacity-10 rounded-lg p-4 hover:bg-opacity-20 transition">
+              <div class="font-semibold text-white">Bureau of Justice Statistics</div>
+              <div class="text-sm text-gray-300 mt-1">The nation's premier criminal justice statistics source. NCVS, NPS, ASJ, NCRP.</div>
+            </a>
+            <a href="https://cde.ucr.cjis.gov/" target="_blank" rel="noopener" class="bg-white bg-opacity-10 rounded-lg p-4 hover:bg-opacity-20 transition">
+              <div class="font-semibold text-white">FBI Crime Data Explorer</div>
+              <div class="text-sm text-gray-300 mt-1">UCR and NIBRS interactive portal. Crime stats by state, agency, jurisdiction.</div>
+            </a>
+            <a href="https://www.prisonpolicy.org/" target="_blank" rel="noopener" class="bg-white bg-opacity-10 rounded-lg p-4 hover:bg-opacity-20 transition">
+              <div class="font-semibold text-white">Prison Policy Initiative</div>
+              <div class="text-sm text-gray-300 mt-1">State profiles, data visualizations, reports on mass incarceration.</div>
+            </a>
+            <a href="https://www.sentencingproject.org/" target="_blank" rel="noopener" class="bg-white bg-opacity-10 rounded-lg p-4 hover:bg-opacity-20 transition">
+              <div class="font-semibold text-white">The Sentencing Project</div>
+              <div class="text-sm text-gray-300 mt-1">State-by-state incarceration data, sentencing policy, felony disenfranchisement.</div>
+            </a>
+            <a href="https://www.vera.org/research" target="_blank" rel="noopener" class="bg-white bg-opacity-10 rounded-lg p-4 hover:bg-opacity-20 transition">
+              <div class="font-semibold text-white">Vera Institute of Justice</div>
+              <div class="text-sm text-gray-300 mt-1">Research on policing, prosecution, courts, sentencing, jails, prisons, reentry.</div>
+            </a>
+            <a href="https://fairandjustprosecution.org/" target="_blank" rel="noopener" class="bg-white bg-opacity-10 rounded-lg p-4 hover:bg-opacity-20 transition">
+              <div class="font-semibold text-white">Fair and Just Prosecution</div>
+              <div class="text-sm text-gray-300 mt-1">Reform-minded prosecutor network. White papers on diversion, data transparency.</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark-gray text-gray-300 py-10 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <h4 class="font-heading text-white text-lg mb-3">FAIR Group</h4>
+          <p class="text-sm leading-relaxed text-gray-400">
+            Fairness and Accountability Integrated Responsibly. Arizona's bipartisan criminal justice reform coalition.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-heading text-white text-lg mb-3">Research</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/resources.html#general" class="hover:text-white transition-colors">General Criminal Law</a></li>
+            <li><a href="/resources.html#policing" class="hover:text-white transition-colors">Policing</a></li>
+            <li><a href="/resources.html#prosecution" class="hover:text-white transition-colors">Prosecution</a></li>
+            <li><a href="/resources.html#sentencing" class="hover:text-white transition-colors">Sentencing</a></li>
+            <li><a href="/resources.html#corrections" class="hover:text-white transition-colors">Corrections</a></li>
+            <li><a href="/resources.html#arizona-data" class="hover:text-white transition-colors">Arizona Data</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-heading text-white text-lg mb-3">Infrastructure</h4>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Coordination and strategy support provided by the <strong class="text-gray-200">Praxis Initiative</strong>, a 100% system-impacted nonprofit based in Phoenix, Arizona.
+          </p>
+        </div>
+      </div>
+      <div class="border-t border-gray-600 pt-6 text-center text-sm text-gray-500">
+        <p>&copy; 2026 FAIR Group. Infrastructure provided by Praxis Initiative, Phoenix, AZ.</p>
+      </div>
+    </div>
+  </footer>
+<script src="/src/js/app.js"></script>
+  <script src="/src/js/nav.js"></script>
+  <script>
+    // Resource filter functionality
+    (function() {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const resourceCards = document.querySelectorAll('.resource-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter;
+
+          // Update button styles
+          filterBtns.forEach(b => {
+            b.classList.remove('bg-navy', 'text-white', 'border-navy');
+            b.classList.add('border-gray-300', 'text-gray-600');
+          });
+          btn.classList.remove('border-gray-300', 'text-gray-600');
+          btn.classList.add('bg-navy', 'text-white', 'border-navy');
+
+          // Filter cards
+          resourceCards.forEach(card => {
+            if (filter === 'all' || card.dataset.type === filter) {
+              card.style.display = '';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Category nav active state on scroll
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('#category-nav a');
+
+      function onScroll() {
+        const scrollPos = window.scrollY + 200;
+        sections.forEach(section => {
+          if (section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos) {
+            navLinks.forEach(link => {
+              link.classList.remove('bg-navy', 'text-white');
+              link.classList.add('bg-gray-100', 'text-dark-gray');
+              if (link.getAttribute('href') === '#' + section.id) {
+                link.classList.remove('bg-gray-100', 'text-dark-gray');
+                link.classList.add('bg-navy', 'text-white');
+              }
+            });
+          }
+        });
+      }
+
+      window.addEventListener('scroll', onScroll);
+      onScroll();
+    })();
+  </script>
+
+</body>
+</html>

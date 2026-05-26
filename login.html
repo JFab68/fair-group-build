@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Login - FAIR Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/dist/style.css">
+</head>
+<body class="font-body text-dark-gray bg-light-gray min-h-screen flex flex-col">
+
+  <!-- Navigation -->
+  <nav class="bg-navy shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/" class="text-white font-heading text-xl font-bold">FAIR Group</a>
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/#about" class="nav-link">About</a>
+          <a href="signup.html" class="nav-link">Sign Up</a>
+          <a href="login.html" class="btn-secondary text-sm px-4 py-2">Login</a>
+        </div>
+        <div class="md:hidden">
+          <button id="mobile-menu-btn" class="text-white focus:outline-none focus:ring-2 focus:ring-white rounded p-1" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-navy border-t border-blue-900">
+      <div class="px-4 py-4 space-y-3">
+        <a href="/" class="block nav-link py-1">Home</a>
+        <a href="/#about" class="block nav-link py-1">About</a>
+        <a href="signup.html" class="block nav-link py-1">Sign Up</a>
+        <a href="login.html" class="block nav-link py-1">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main class="flex-1 flex items-center justify-center py-16 px-4">
+    <div class="w-full max-w-md">
+
+      <!-- Logo / Header -->
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-navy rounded-full mb-4" aria-hidden="true">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+          </svg>
+        </div>
+        <h1 class="font-heading text-3xl text-navy font-bold">Member Login</h1>
+        <p class="text-gray-500 text-sm mt-2">Sign in to access the FAIR Group member workspace</p>
+      </div>
+
+      <!-- Error Display -->
+      <div id="login-error" class="hidden bg-red-50 border border-red-300 text-red-800 rounded-lg px-5 py-4 mb-6" role="alert" aria-live="assertive">
+        <p class="text-sm font-medium"></p>
+      </div>
+
+      <!-- Login Card -->
+      <div class="bg-white rounded-lg shadow-md p-8">
+        <form id="login-form" novalidate>
+
+          <div class="mb-5">
+            <label for="email" class="input-label">Email Address <span class="text-maroon" aria-hidden="true">*</span></label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="input-field"
+              placeholder="you@example.com"
+              required
+              autocomplete="email"
+              aria-required="true"
+            >
+          </div>
+
+          <div class="mb-6">
+            <div class="flex items-center justify-between mb-1">
+              <label for="password" class="input-label mb-0">Password <span class="text-maroon" aria-hidden="true">*</span></label>
+              <a href="password-reset.html" class="text-xs text-navy hover:underline font-medium">Forgot password?</a>
+            </div>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="input-field"
+              placeholder="Your password"
+              required
+              autocomplete="current-password"
+              aria-required="true"
+            >
+          </div>
+
+          <button type="submit" class="btn-primary w-full justify-center" id="login-btn">
+            Sign In
+          </button>
+
+        </form>
+      </div>
+
+      <!-- Secondary links -->
+      <div class="text-center mt-6 space-y-3">
+        <p class="text-sm text-gray-600">
+          Not a member yet?
+          <a href="signup.html" class="text-navy font-semibold hover:underline">Apply to join the coalition</a>
+        </p>
+        <p class="text-sm text-gray-600">
+          Forgot your password?
+          <a href="password-reset.html" class="text-navy font-semibold hover:underline">Reset it here</a>
+        </p>
+      </div>
+
+      <!-- Pending approval note -->
+      <div class="mt-8 bg-white rounded-lg border border-gray-200 p-5">
+        <h2 class="text-sm font-semibold text-dark-gray mb-2">Awaiting Approval?</h2>
+        <p class="text-xs text-gray-500 leading-relaxed">
+          If you recently applied, your application is under review by our administrative team. You will receive an email notification once your membership status is updated. Only approved members can access the member workspace.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark-gray text-gray-400 py-6 px-4">
+    <div class="max-w-6xl mx-auto text-center text-sm">
+      <p>&copy; 2026 FAIR Group. Infrastructure provided by Praxis Initiative, Phoenix, AZ.</p>
+    </div>
+  </footer>
+
+  <script src="/src/js/nav.js"></script>
+  <script src="/src/js/auth.js"></script>
+</body>
+</html>
