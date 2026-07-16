@@ -43,6 +43,13 @@ function initialize() {
       expire DATETIME NOT NULL
     );
 
+    CREATE TABLE IF NOT EXISTS preapproved_emails (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      email TEXT UNIQUE NOT NULL,
+      addedBy TEXT,
+      addedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
     CREATE TABLE IF NOT EXISTS password_reset_tokens (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       userId INTEGER NOT NULL,
@@ -76,12 +83,12 @@ function initialize() {
 
 // --- User Operations ---
 
-function createUser({ firstName, lastName, email, password, phone, city, county, interestAreas, hearAboutUs, statement }) {
+function createUser({ firstName, lastName, email, password, phone, city, county, interestAreas, statement }) {
   const stmt = getDb().prepare(`
-    INSERT INTO users (firstName, lastName, email, password, phone, city, county, interestAreas, hearAboutUs, statement)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO users (firstName, lastName, email, password, phone, city, county, interestAreas, statement)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
-  const result = stmt.run(firstName, lastName, email, password, phone, city, county, interestAreas, hearAboutUs, statement);
+  const result = stmt.run(firstName, lastName, email, password, phone, city, county, interestAreas, statement);
   return result.lastInsertRowid;
 }
 
@@ -119,6 +126,26 @@ function getAllUsers() {
 
 function getPendingUsers() {
   return getDb().prepare('SELECT id, firstName, lastName, email, phone, city, county, interestAreas, statement, createdAt FROM users WHERE status = ? ORDER BY createdAt ASC').all('pending');
+}
+
+// --- Preapproved Email Operations ---
+
+function addPreapprovedEmail(email, addedBy) {
+  const stmt = getDb().prepare('INSERT OR IGNORE INTO preapproved_emails (email, addedBy) VALUES (?, ?)');
+  return stmt.run(email, addedBy || null);
+}
+
+function removePreapprovedEmail(id) {
+  return getDb().prepare('DELETE FROM preapproved_emails WHERE id = ?').run(id);
+}
+
+function getPreapprovedEmails() {
+  return getDb().prepare('SELECT * FROM preapproved_emails ORDER BY addedAt DESC').all();
+}
+
+function isEmailPreapproved(email) {
+  const row = getDb().prepare('SELECT id FROM preapproved_emails WHERE email = ?').get(email);
+  return !!row;
 }
 
 // --- Session Operations (custom store) ---
@@ -215,6 +242,10 @@ module.exports = {
   updateUserPassword,
   getAllUsers,
   getPendingUsers,
+  addPreapprovedEmail,
+  removePreapprovedEmail,
+  getPreapprovedEmails,
+  isEmailPreapproved,
   getSession,
   setSession,
   destroySession,

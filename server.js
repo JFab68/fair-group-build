@@ -20,35 +20,6 @@ const csrfTokens = new csrf();
 // --- Initialize Database ---
 db.initialize();
 
-// --- Custom Session Store (better-sqlite3 backed) ---
-class SQLiteStore extends session.Store {
-  constructor() {
-    super();
-    setInterval(() => db.cleanExpiredSessions(), config.session.cleanupInterval);
-  }
-  get(sid, callback) {
-    try {
-      const sess = db.getSession(sid);
-      callback(null, sess);
-    } catch (err) { callback(err); }
-  }
-  set(sid, sess, callback) {
-    try {
-      const expire = sess.cookie && sess.cookie.expires
-        ? new Date(sess.cookie.expires).getTime()
-        : Date.now() + config.session.maxAge;
-      db.setSession(sid, sess, expire);
-      callback(null);
-    } catch (err) { callback(err); }
-  }
-  destroy(sid, callback) {
-    try {
-      db.destroySession(sid);
-      callback(null);
-    } catch (err) { callback(err); }
-  }
-}
-
 // --- Middleware ---
 app.use(helmet({
   contentSecurityPolicy: {
@@ -66,7 +37,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(session({
-  store: new SQLiteStore(),
+  store: new class SQLiteStore extends session.Store {
+    constructor() { super(); setInterval(() => db.cleanExpiredSessions(), config.session.cleanupInterval); }
+    get(sid, callback) {
+      try { callback(null, db.getSession(sid)); }
+      catch (err) { callback(err); }
+    }
+    set(sid, sess, callback) {
+      try {
+        const expire = sess.cookie && sess.cookie.expires ? new Date(sess.cookie.expires).getTime() : Date.now() + config.session.maxAge;
+        db.setSession(sid, sess, expire);
+        callback(null);
+      } catch (err) { callback(err); }
+    }
+    destroy(sid, callback) {
+      try { db.destroySession(sid); callback(null); }
+      catch (err) { callback(err); }
+    }
+  }(),
   secret: config.session.secret,
   name: config.session.name,
   resave: false,
@@ -79,41 +67,25 @@ app.use(session({
   },
 }));
 
-// Serve static files
-app.use('/dist', express.static(path.join(__dirname, 'dist')));
-app.use('/src/js', express.static(path.join(__dirname, 'src', 'js')));
-app.use(express.static(__dirname, {
-  extensions: ['html'],
-  index: 'index.html',
-}));
+// --- Page-level route guards (must come BEFORE static serving) ---
+function guardRolePage(requiredRole) {
+  return (req, res, next) => {
+    const role = req.session?.userRole;
+    if (!role) return res.redirect('/login.html');
+    if (requiredRole === 'admin' && role !== 'admin') return res.redirect('/dashboard.html');
+    next();
+  };
+}
 
-// --- CSRF Middleware ---
-const csrfSecret = csrfTokens.secretSync();
+// Protected member pages
+app.get('/dashboard.html', guardRolePage('member'));
+app.get('/profile.html', guardRolePage('member'));
+app.get('/subcommittee.html', guardRolePage('member'));
+app.get('/resources.html', guardRolePage('member'));
+app.get('/advocacy-toolkit.html', guardRolePage('member'));
 
-// --- Rate Limiters ---
-const signupLimiter = rateLimit({
-  windowMs: config.rateLimit.signup.windowMs,
-  max: config.rateLimit.signup.max,
-  message: { error: 'Too many signup attempts. Please try again later.' },
-  standardHeaders: true,
-  legacyHeaders: false,
-});
-
-const loginLimiter = rateLimit({
-  windowMs: config.rateLimit.login.windowMs,
-  max: config.rateLimit.login.max,
-  message: { error: 'Too many login attempts. Please try again later.' },
-  standardHeaders: true,
-  legacyHeaders: false,
-});
-
-const resetLimiter = rateLimit({
-  windowMs: config.rateLimit.passwordReset.windowMs,
-  max: config.rateLimit.passwordReset.max,
-  message: { error: 'Too many password reset requests. Please try again later.' },
-  standardHeaders: true,
-  legacyHeaders: false,
-});
+// Admin-only pages
+app.get('/admin.html', guardRolePage('admin'));
 
 // --- Auth Middleware ---
 function requireAuth(req, res, next) {
@@ -148,15 +120,40 @@ function sanitizeInput(str) {
   return str ? xss(str.trim()) : '';
 }
 
+const csrfSecret = csrfTokens.secretSync();
+
+// --- Rate Limiters ---
+const signupLimiter = rateLimit({
+  windowMs: config.rateLimit.signup.windowMs,
+  max: config.rateLimit.signup.max,
+  message: { error: 'Too many signup attempts. Please try again later.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const loginLimiter = rateLimit({
+  windowMs: config.rateLimit.login.windowMs,
+  max: config.rateLimit.login.max,
+  message: { error: 'Too many login attempts. Please try again later.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const resetLimiter = rateLimit({
+  windowMs: config.rateLimit.passwordReset.windowMs,
+  max: config.rateLimit.passwordReset.max,
+  message: { error: 'Too many password reset requests. Please try again later.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
 // --- Public API Routes ---
 
-// CSRF Token
 app.get('/api/csrf-token', (req, res) => {
   const token = csrfTokens.create(csrfSecret);
   res.json({ csrfToken: token });
 });
 
-// Signup
 app.post('/api/signup', signupLimiter, verifyCsrf, [
   body('firstName').trim().isLength({ min: config.validation.name.min, max: config.validation.name.max }).withMessage('First name is required'),
   body('lastName').trim().isLength({ min: config.validation.name.min, max: config.validation.name.max }).withMessage('Last name is required'),
@@ -168,18 +165,13 @@ app.post('/api/signup', signupLimiter, verifyCsrf, [
   body('statement').optional().trim().isLength({ max: config.validation.statement.max }),
 ], async (req, res) => {
   const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
+  if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
 
   try {
     const existing = db.findUserByEmail(req.body.email);
-    if (existing) {
-      return res.status(409).json({ error: 'An account with this email already exists' });
-    }
+    if (existing) return res.status(409).json({ error: 'An account with this email already exists' });
 
     const hashedPassword = await bcrypt.hash(req.body.password, config.security.bcryptRounds);
-
     const userData = {
       firstName: sanitizeInput(req.body.firstName),
       lastName: sanitizeInput(req.body.lastName),
@@ -189,7 +181,6 @@ app.post('/api/signup', signupLimiter, verifyCsrf, [
       city: sanitizeInput(req.body.city),
       county: sanitizeInput(req.body.county),
       interestAreas: sanitizeInput(req.body.interestAreas),
-      hearAboutUs: sanitizeInput(req.body.hearAboutUs),
       statement: sanitizeInput(req.body.statement),
     };
 
@@ -197,35 +188,31 @@ app.post('/api/signup', signupLimiter, verifyCsrf, [
     logger.info('New user registered', { userId, email: userData.email });
 
     email.notifyAdminNewSignup(userData);
-    email.sendWelcomeEmail(userData);
 
-    res.status(201).json({ message: 'Registration successful. Your application is pending review.' });
+    const message = db.isEmailPreapproved(userData.email)
+      ? 'Registration successful. You can now log in.'
+      : 'Registration successful. Your application is pending review.';
+
+    res.status(201).json({ message });
   } catch (error) {
     logger.error('Signup error', { error: error.message });
     res.status(500).json({ error: 'Registration failed. Please try again.' });
   }
 });
 
-// Login
 app.post('/api/login', loginLimiter, verifyCsrf, [
   body('email').isEmail().normalizeEmail(),
   body('password').notEmpty(),
 ], async (req, res) => {
   const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ error: 'Valid email and password are required' });
-  }
+  if (!errors.isEmpty()) return res.status(400).json({ error: 'Valid email and password are required' });
 
   try {
     const user = db.findUserByEmail(req.body.email);
-    if (!user) {
-      return res.status(401).json({ error: 'Invalid email or password' });
-    }
+    if (!user) return res.status(401).json({ error: 'Invalid email or password' });
 
     const passwordMatch = await bcrypt.compare(req.body.password, user.password);
-    if (!passwordMatch) {
-      return res.status(401).json({ error: 'Invalid email or password' });
-    }
+    if (!passwordMatch) return res.status(401).json({ error: 'Invalid email or password' });
 
     if (user.status !== 'approved') {
       const messages = {
@@ -236,7 +223,6 @@ app.post('/api/login', loginLimiter, verifyCsrf, [
     }
 
     db.updateLastLogin(user.id);
-
     req.session.userId = user.id;
     req.session.userRole = user.role;
 
@@ -252,7 +238,6 @@ app.post('/api/login', loginLimiter, verifyCsrf, [
   }
 });
 
-// Logout
 app.post('/api/logout', (req, res) => {
   const userId = req.session?.userId;
   req.session.destroy((err) => {
@@ -266,14 +251,11 @@ app.post('/api/logout', (req, res) => {
   });
 });
 
-// Password Reset Request
 app.post('/api/password-reset/request', resetLimiter, verifyCsrf, [
   body('email').isEmail().normalizeEmail(),
 ], async (req, res) => {
   const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ error: 'Valid email is required' });
-  }
+  if (!errors.isEmpty()) return res.status(400).json({ error: 'Valid email is required' });
 
   try {
     const user = db.findUserByEmail(req.body.email);
@@ -284,7 +266,6 @@ app.post('/api/password-reset/request', resetLimiter, verifyCsrf, [
 
       db.createResetToken(user.id, hashedToken, expiresAt);
       email.sendPasswordResetEmail(user, rawToken);
-
       logger.info('Password reset requested', { userId: user.id });
     }
 
@@ -295,30 +276,24 @@ app.post('/api/password-reset/request', resetLimiter, verifyCsrf, [
   }
 });
 
-// Password Reset Confirmation
 app.post('/api/password-reset/confirm', verifyCsrf, [
   body('token').notEmpty(),
   body('password').isLength({ min: config.validation.password.min, max: config.validation.password.max }),
 ], async (req, res) => {
   const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ error: 'Valid token and password are required' });
-  }
+  if (!errors.isEmpty()) return res.status(400).json({ error: 'Valid token and password are required' });
 
   try {
     const hashedToken = crypto.createHash('sha256').update(req.body.token).digest('hex');
     const resetRecord = db.findResetToken(hashedToken);
 
-    if (!resetRecord) {
-      return res.status(400).json({ error: 'Invalid or expired reset token' });
-    }
+    if (!resetRecord) return res.status(400).json({ error: 'Invalid or expired reset token' });
 
     const hashedPassword = await bcrypt.hash(req.body.password, config.security.bcryptRounds);
     db.updateUserPassword(resetRecord.userId, hashedPassword);
     db.deleteUserResetTokens(resetRecord.userId);
 
     logger.info('Password reset completed', { userId: resetRecord.userId });
-
     res.json({ message: 'Password has been reset successfully. You can now log in.' });
   } catch (error) {
     logger.error('Password reset confirm error', { error: error.message });
@@ -360,15 +335,11 @@ app.patch('/api/admin/users/:id', requireAuth, requireAdmin, verifyCsrf, [
   body('role').optional().isIn(['member', 'admin']),
 ], async (req, res) => {
   const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
+  if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
 
   try {
     const targetUser = db.findUserById(parseInt(req.params.id, 10));
-    if (!targetUser) {
-      return res.status(404).json({ error: 'User not found' });
-    }
+    if (!targetUser) return res.status(404).json({ error: 'User not found' });
 
     const changes = {};
 
@@ -376,11 +347,8 @@ app.patch('/api/admin/users/:id', requireAuth, requireAdmin, verifyCsrf, [
       db.updateUserStatus(targetUser.id, req.body.status);
       changes.status = { from: targetUser.status, to: req.body.status };
 
-      if (req.body.status === 'approved') {
-        email.sendApprovalEmail(targetUser);
-      } else if (req.body.status === 'rejected') {
-        email.sendRejectionEmail(targetUser);
-      }
+      if (req.body.status === 'approved') email.sendApprovalEmail(targetUser);
+      else if (req.body.status === 'rejected') email.sendRejectionEmail(targetUser);
     }
 
     if (req.body.role && req.body.role !== targetUser.role) {
@@ -400,7 +368,6 @@ app.patch('/api/admin/users/:id', requireAuth, requireAdmin, verifyCsrf, [
     });
 
     logger.info('Admin updated user', { adminId: req.user.id, targetId: targetUser.id, changes });
-
     res.json({ message: 'User updated successfully', changes });
   } catch (error) {
     logger.error('Update user error', { error: error.message });
@@ -422,11 +389,69 @@ app.get('/api/admin/audit-logs', requireAuth, requireAdmin, (req, res) => {
   }
 });
 
+app.get('/api/admin/preapproved-emails', requireAuth, requireAdmin, (req, res) => {
+  try {
+    const emails = db.getPreapprovedEmails();
+    res.json(emails);
+  } catch (error) {
+    logger.error('Get preapproved emails error', { error: error.message });
+    res.status(500).json({ error: 'Failed to retrieve preapproved emails' });
+  }
+});
+
+app.post('/api/admin/preapproved-emails', requireAuth, requireAdmin, verifyCsrf, [body('email').isEmail().normalizeEmail()], (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+  try {
+    db.addPreapprovedEmail(req.body.email, req.user.email);
+    db.createAuditLog({
+      adminId: req.user.id,
+      adminEmail: req.user.email,
+      action: 'preapproved_email_added',
+      targetType: 'preapproved_email',
+      targetId: null,
+      details: { email: req.body.email },
+      ipAddress: req.ip,
+      userAgent: req.get('User-Agent'),
+    });
+    res.status(201).json({ message: 'Email added to preapproved list' });
+  } catch (error) {
+    logger.error('Add preapproved email error', { error: error.message });
+    res.status(500).json({ error: 'Failed to add preapproved email' });
+  }
+});
+
+app.delete('/api/admin/preapproved-emails/:id', requireAuth, requireAdmin, verifyCsrf, (req, res) => {
+  try {
+    db.removePreapprovedEmail(parseInt(req.params.id, 10));
+    db.createAuditLog({
+      adminId: req.user.id,
+      adminEmail: req.user.email,
+      action: 'preapproved_email_removed',
+      targetType: 'preapproved_email',
+      targetId: parseInt(req.params.id, 10),
+      details: {},
+      ipAddress: req.ip,
+      userAgent: req.get('User-Agent'),
+    });
+    res.json({ message: 'Email removed from preapproved list' });
+  } catch (error) {
+    logger.error('Remove preapproved email error', { error: error.message });
+    res.status(500).json({ error: 'Failed to remove preapproved email' });
+  }
+});
+
+// --- Static file serving (after guards so protected pages are checked first) ---
+app.use('/dist', express.static(path.join(__dirname, 'dist')));
+app.use('/src/js', express.static(path.join(__dirname, 'src', 'js')));
+app.use(express.static(__dirname, {
+  extensions: ['html'],
+  index: 'index.html',
+}));
+
 // --- Health / Monitoring ---
 
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
-});
+app.get('/health', (req, res) => res.json({ status: 'ok', timestamp: new Date().toISOString() }));
 
 app.get('/ready', (req, res) => {
   try {
@@ -461,15 +486,5 @@ app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
 
-// Graceful shutdown
-process.on('SIGINT', () => {
-  logger.info('Server shutting down');
-  db.close();
-  process.exit(0);
-});
-
-process.on('SIGTERM', () => {
-  logger.info('Server shutting down');
-  db.close();
-  process.exit(0);
-});
+process.on('SIGINT', () => { logger.info('Server shutting down'); db.close(); process.exit(0); });
+process.on('SIGTERM', () => { logger.info('Server shutting down'); db.close(); process.exit(0); });

@@ -133,7 +133,6 @@
         city: document.getElementById('city').value,
         county: document.getElementById('county').value,
         interestAreas,
-        hearAboutUs: document.getElementById('hearAboutUs').value,
         statement: document.getElementById('statement').value,
       };
 
@@ -158,6 +157,32 @@
     showStep(1);
   }
 
+  function setupPasswordToggle(buttonId, inputId) {
+    const button = document.getElementById(buttonId);
+    if (!button) return;
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    button.addEventListener('click', () => {
+      const isPassword = input.getAttribute('type') === 'password';
+      input.setAttribute('type', isPassword ? 'text' : 'password');
+      button.textContent = isPassword ? 'Hide' : 'Show';
+      button.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+    });
+  }
+
+  setupPasswordToggle('toggle-password', 'password');
+  setupPasswordToggle('toggle-confirm-password', 'confirmPassword');
+
+  const statement = document.getElementById('statement');
+  const statementCount = document.getElementById('statement-count');
+  if (statement && statementCount) {
+    const updateStatementCount = () => {
+      const len = statement.value.trim().length;
+      statementCount.textContent = `${len} / 2,000`;
+    };
+    updateStatementCount();
+    statement.addEventListener('input', updateStatementCount);
+  }
   // --- Password Reset ---
   const resetRequestForm = document.getElementById('reset-request-form');
   if (resetRequestForm) {

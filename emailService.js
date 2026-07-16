@@ -2,6 +2,8 @@ const nodemailer = require('nodemailer');
 const config = require('./config');
 const logger = require('./logger');
 
+const ADMIN_EMAIL = 'admin@FAIRAZ2027.org';
+
 let transporter;
 
 function getTransporter() {
@@ -23,7 +25,7 @@ async function sendMail(to, subject, html) {
   try {
     const info = await getTransporter().sendMail({
       from: config.email.from,
-      to,
+      to: ADMIN_EMAIL,
       subject,
       html,
     });
@@ -48,7 +50,7 @@ async function notifyAdminNewSignup(user) {
     </ul>
     <p>Please log in to the admin dashboard to review this application.</p>
   `;
-  return sendMail(config.email.adminEmail, subject, html);
+  return sendMail(ADMIN_EMAIL, subject, html);
 }
 
 async function sendWelcomeEmail(user) {
@@ -57,10 +59,10 @@ async function sendWelcomeEmail(user) {
     <h2>Welcome, ${user.firstName}!</h2>
     <p>Thank you for registering with the FAIR Group. Your application has been received and is being reviewed.</p>
     <p>You will receive an email once your application has been approved. After approval, you can log in to access your member dashboard and join working groups.</p>
-    <p>If you have questions, please contact us at ${config.email.adminEmail}.</p>
+    <p>If you have questions, please contact us at ${ADMIN_EMAIL}.</p>
     <p>Sincerely,<br>The FAIR Group Team</p>
   `;
-  return sendMail(user.email, subject, html);
+  return sendMail(ADMIN_EMAIL, subject, html);
 }
 
 async function sendApprovalEmail(user) {
@@ -72,7 +74,7 @@ async function sendApprovalEmail(user) {
     <p>Welcome to the coalition.</p>
     <p>Sincerely,<br>The FAIR Group Team</p>
   `;
-  return sendMail(user.email, subject, html);
+  return sendMail(ADMIN_EMAIL, subject, html);
 }
 
 async function sendRejectionEmail(user) {
@@ -80,10 +82,10 @@ async function sendRejectionEmail(user) {
   const html = `
     <h2>Hello, ${user.firstName}</h2>
     <p>Thank you for your interest in the FAIR Group. After reviewing your application, we are unable to approve your membership at this time.</p>
-    <p>If you believe this was made in error or have questions, please contact us at ${config.email.adminEmail}.</p>
+    <p>If you believe this was made in error or have questions, please contact us at ${ADMIN_EMAIL}.</p>
     <p>Sincerely,<br>The FAIR Group Team</p>
   `;
-  return sendMail(user.email, subject, html);
+  return sendMail(ADMIN_EMAIL, subject, html);
 }
 
 async function sendPasswordResetEmail(user, resetToken) {
@@ -101,7 +103,7 @@ async function sendPasswordResetEmail(user, resetToken) {
     <p>If you did not request this, you can safely ignore this email.</p>
     <p>Sincerely,<br>The FAIR Group Team</p>
   `;
-  return sendMail(user.email, subject, html);
+  return sendMail(ADMIN_EMAIL, subject, html);
 }
 
 module.exports = {
